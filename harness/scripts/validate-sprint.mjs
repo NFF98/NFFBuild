@@ -4,10 +4,11 @@ import path from 'node:path';
 const root=process.cwd(), errors=[];
 const read=r=>JSON.parse(fs.readFileSync(path.join(root,r),'utf8'));
 const exists=r=>fs.existsSync(path.join(root,r));
-const cs=read('delivery/CURRENT-SPRINT.json'), cb=read('build-spec/CURRENT.json'), backlog=read('delivery/backlog/QUEUE.json');
+const cs=read('delivery/CURRENT-SPRINT.json'), cb=read('build-spec/CURRENT.json'), backlog=read('delivery/backlog/QUEUE.json'), skillRegistry=read('skills/REGISTRY.json');
+const registeredSkills=new Set((skillRegistry.skills||[]).map(x=>x.id));
 const sprintStates=new Set(['HOLD','PLANNED','ACTIVE','BLOCKED','REVIEW','CLOSED']);
 const taskStates=new Set(['PLANNED','IN_PROGRESS','BLOCKED','REVIEW','VERIFIED','CLOSED']);
-const protectedPrefixes=['build-spec/','harness/','ci/','deploy/','releases/','.cursor/','.github/','delivery/templates/','delivery/deltas/'];
+const protectedPrefixes=['build-spec/','harness/','ci/','deploy/','releases/','skills/','.cursor/','.github/','delivery/templates/','delivery/deltas/'];
 const backlogById=new Map((backlog.items||[]).map(x=>[x.backlog_item_id,x]));
 
 if(!sprintStates.has(cs.status)) errors.push('Invalid CURRENT-SPRINT status.');
@@ -57,7 +58,8 @@ if(cs.active_sprint===null){
         if(protectedPrefixes.some(x=>p.startsWith(x)) || p==='AGENTS.md') errors.push('Task may not write governance path in '+t.task_id+': '+p);
       }
       if(!Array.isArray(t.required_commands)||!t.required_commands.length) errors.push('Missing required_commands: '+t.task_id);
-      if(!Array.isArray(t.required_skills)) errors.push('required_skills must be array: '+t.task_id);
+      if(!Array.isArray(t.required_skills)||!t.required_skills.length) errors.push('Missing required_skills: '+t.task_id);
+      for(const sid of t.required_skills||[]) if(!registeredSkills.has(sid)) errors.push('Unknown required Skill '+sid+' in '+t.task_id);
       if(!Array.isArray(t.completion_evidence)) errors.push('completion_evidence must be array: '+t.task_id);
       if(t.task_id===cs.active_task) activeTaskObj=t;
     }

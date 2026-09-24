@@ -9,31 +9,38 @@
 - 不得修改 `build-spec/baselines/<existing-baseline>/`。
 - 不得建立 `working/`、`spec/`、`execution/` shadow trees。
 - 不得把 code behavior、library limitation 或「比較好做」反推成 product truth。
-- 不得自行選擇未定 UX / API / data / runtime semantics。
 - 發現 gap 先記錄 Finding；受影響 Task 必須 BLOCKED。
 - 同一 implementation strategy 失敗兩次，停止 retry loop，建立 Finding。
-- 修復必須維持 Acceptance/Test traceability。
 - Sprint 外工作不得混入當前 Sprint commit。
 - Cursor 不得自行建立、批准或 promote Production Release。
-- Cursor 不得修改 `ci/`、`deploy/`、`releases/` 的 governance contract 來繞過失敗 Gate。
-- Production deployment 只能由 GitHub Release workflow + approved Release Manifest 執行。
-- DB migration 失敗或要求 destructive rollback 時，停止 Release，不得自行重寫 production history。
+- Production deployment 只能由 approved Release workflow 執行。
 
-## Read Order
+## Mandatory Read Order
 
 ```text
 build-spec/CURRENT.json
+→ delivery/backlog/QUEUE.json
 → delivery/CURRENT-SPRINT.json
-→ active sprint manifest
-→ active Build Spec manifest
-→ mapped contracts / registries / UI references
+→ active Sprint manifest/tasks
+→ active Build Spec + mapped contracts
+→ skills/REGISTRY.json
+→ every SKILL.md in active Task required_skills
 → mapped tests
 ```
+
+## Skill Rule
+
+Skill = method，不是 permission。
+
+- Task 的 `required_skills` 必須來自 `skills/REGISTRY.json`。
+- 使用 Skill 仍受 `allowed_write_paths`、Build Spec、Sprint scope、Harness 約束。
+- Skill 不得授權 Product decision。
+- 需要未註冊 Skill / 未定產品行為時停止並升 governance。
 
 ## Fast Loop
 
 ```text
-Implement → Test → Debug → Fix implementation/test → Re-test → Verify
+Implement → Test → Debug → Fix → Re-test → Evidence → Review
 ```
 
 只允許在不改變 locked contract semantics 時自動進行。
@@ -47,25 +54,14 @@ Spec ambiguity / Design issue / Build blocker
 → Human assessment
 → NodeFF Working change if approved
 → User approval
-→ New Build Spec baseline
-→ Rebind affected task
+→ New Build Spec
+→ Backlog/Task rebind
 → Resume
 ```
-
-任何情況不得直接 patch locked Build Spec。
 
 ## Release Loop
 
 ```text
-Closed Sprint
-→ Release Manifest
-→ Human Release Approval
-→ REL-* promotion tag
-→ Staging deploy
-→ Smoke
-→ Production deploy
-→ Smoke
-→ PASS / code rollback
+Closed Sprint → Release Manifest → Human Approval
+→ Staging → Smoke → Production → Smoke → PASS / code rollback
 ```
-
-Release automation 執行既有 approved contract；它不是新的產品決策層。

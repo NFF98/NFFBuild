@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "sprint_id": "SP-P1-001",
   "tasks": [
     {
@@ -18,7 +18,7 @@
       ],
       "allowed_write_paths": ["src/example/", "tests/behavior/"],
       "required_commands": ["npm run gate"],
-      "required_skills": [],
+      "required_skills": ["implementer", "test-builder", "reviewer"],
       "parallel_safe": false,
       "product_decision_allowed": false,
       "blocked_by": [],
