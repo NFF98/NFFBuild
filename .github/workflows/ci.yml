@@ -19,8 +19,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: package-lock.json
       - name: Governance / traceability gates
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
