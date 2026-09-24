@@ -9,6 +9,10 @@ if(!current.implementation_enabled){
   console.log("PRODUCT CI: HOLD — implementation not enabled.");
   process.exit(0);
 }
+if(policy.lockfile_required_when_implementation_enabled && !fs.existsSync("package-lock.json")){
+  console.error("PRODUCT CI: FAIL\n- package-lock.json is required once implementation is enabled.");
+  process.exit(1);
+}
 
 const missing=(policy.required_when_implementation_enabled||[]).filter(s=>!pkg.scripts?.[s]);
 if(missing.length){
@@ -16,7 +20,6 @@ if(missing.length){
   missing.forEach(s=>console.error("- Missing required npm script: "+s));
   process.exit(1);
 }
-
 for(const script of policy.required_when_implementation_enabled){
   console.log("\n> npm run "+script);
   const r=spawnSync("npm",["run",script],{stdio:"inherit",shell:false});

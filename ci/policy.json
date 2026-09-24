@@ -1,5 +1,6 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
+  "lockfile_required_when_implementation_enabled": true,
   "required_when_implementation_enabled": [
     "check:types",
     "check:lint",
