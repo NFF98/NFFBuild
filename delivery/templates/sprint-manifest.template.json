@@ -1,0 +1,14 @@
+{
+  "sprint_id": "SP-P1-001",
+  "status": "PLANNED",
+  "build_spec_id": "BS-P1-001",
+  "goal": "",
+  "scope": [],
+  "non_scope": [],
+  "tasks_file": "tasks.json",
+  "entry_gate": {
+    "build_spec_locked": true,
+    "acceptance_mapped": true,
+    "user_approved": false
+  }
+}

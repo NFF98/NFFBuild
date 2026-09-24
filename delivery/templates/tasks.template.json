@@ -1,0 +1,15 @@
+{
+  "sprint_id": "SP-P1-001",
+  "tasks": [{
+    "task_id": "T001",
+    "title": "",
+    "status": "PLANNED",
+    "build_spec_id": "BS-P1-001",
+    "scope": [],
+    "mapped_acceptance": [],
+    "mapped_tests": [],
+    "parallel_safe": false,
+    "product_decision_allowed": false,
+    "blocked_by": []
+  }]
+}

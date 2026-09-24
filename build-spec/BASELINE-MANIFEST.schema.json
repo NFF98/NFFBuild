@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NFF Build Spec Baseline Manifest",
+  "type": "object",
+  "required": ["baseline_id","status","source_repo","source_working_commit","created_at","supersedes","approved_delta_ids","acceptance_count","content_sha256"],
+  "properties": {
+    "baseline_id": { "type": "string", "pattern": "^BS-P[0-9]+-[0-9]{3}$" },
+    "status": { "const": "LOCKED" },
+    "source_repo": { "const": "NFF98/NodeFF" },
+    "source_working_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "created_at": { "type": "string" },
+    "supersedes": { "type": ["string","null"] },
+    "approved_delta_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "acceptance_count": { "type": "integer", "minimum": 0 },
+    "content_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "included_roots": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+  },
+  "additionalProperties": true
+}

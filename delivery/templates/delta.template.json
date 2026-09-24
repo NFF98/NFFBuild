@@ -1,0 +1,15 @@
+{
+  "delta_id": "BD-001",
+  "type": "DESIGN_DELTA",
+  "status": "OPEN",
+  "source_finding_ids": [],
+  "affected_build_spec": "BS-P1-001",
+  "affected_tasks": [],
+  "affected_contracts": [],
+  "affected_acceptance": [],
+  "owner": "HUMAN_GOVERNANCE",
+  "user_decision_required": true,
+  "upstream_working_commit": null,
+  "replacement_build_spec": null,
+  "verification": []
+}

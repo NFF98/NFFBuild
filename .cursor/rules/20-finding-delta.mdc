@@ -1,0 +1,28 @@
+---
+description: Finding quarantine and delta escalation
+alwaysApply: true
+---
+
+Finding classifications:
+- IMPLEMENTATION_BUG
+- TEST_BUG
+- SPEC_AMBIGUITY
+- DESIGN_DELTA_CANDIDATE
+- BUILD_BLOCKER
+
+IMPLEMENTATION_BUG and TEST_BUG may stay in the automated fast loop only when the locked contract remains unchanged.
+
+SPEC_AMBIGUITY, DESIGN_DELTA_CANDIDATE, and contract-affecting BUILD_BLOCKER:
+- mark affected task BLOCKED;
+- create a Finding with expected/actual/evidence/attempts;
+- do not change Build Spec;
+- wait for human governance.
+
+Governed Delta types:
+- DESIGN_DELTA
+- IMPLEMENTATION_DELTA
+- TEST_DELTA
+- DEBUG_FINDING
+- FIX_DELTA
+
+Only DESIGN_DELTA may require a new Build Spec baseline, and only after upstream NodeFF Working + User approval.

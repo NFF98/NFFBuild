@@ -1,0 +1,13 @@
+{
+  "name": "nff-build",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "gate": "node harness/scripts/governance-gate.mjs && node harness/scripts/validate-sprint.mjs && node harness/scripts/validate-findings.mjs",
+    "gate:governance": "node harness/scripts/governance-gate.mjs",
+    "gate:sprint": "node harness/scripts/validate-sprint.mjs",
+    "gate:findings": "node harness/scripts/validate-findings.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

@@ -1,0 +1,17 @@
+---
+description: Build Spec immutability and rebaseline rules
+alwaysApply: true
+---
+
+- build-spec/CURRENT.json names the only active baseline.
+- Baselines are immutable after merge to main.
+- Never edit an old baseline to make tests pass.
+- Never reinterpret a contract because implementation is difficult.
+- Never remove an Acceptance/Test obligation without an approved rebaseline.
+
+Approved rebaseline:
+1. old baseline remains unchanged;
+2. a new BS-* baseline is added;
+3. new manifest lists supersedes + approved delta IDs;
+4. governance gate verifies it;
+5. affected Sprint tasks are explicitly rebound before implementation resumes.

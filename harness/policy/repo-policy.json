@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "design_source_repo": "NFF98/NodeFF",
+  "forbidden_top_level_directories": ["working","spec","execution"],
+  "immutable_after_merge": ["build-spec/baselines"],
+  "cursor_product_implementation_requires": ["active_locked_build_spec","active_approved_sprint"],
+  "finding_classifications": ["IMPLEMENTATION_BUG","TEST_BUG","SPEC_AMBIGUITY","DESIGN_DELTA_CANDIDATE","BUILD_BLOCKER"],
+  "delta_types": ["DESIGN_DELTA","IMPLEMENTATION_DELTA","TEST_DELTA","DEBUG_FINDING","FIX_DELTA"],
+  "human_gate_required_for": ["DESIGN_DELTA","BUILD_SPEC_FREEZE","BUILD_SPEC_REBASELINE","PRODUCT_DECISION"],
+  "max_same_strategy_failures_before_escalation": 2
+}

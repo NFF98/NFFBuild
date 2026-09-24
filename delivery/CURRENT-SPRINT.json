@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "active_sprint": null,
+  "active_build_spec": null,
+  "status": "HOLD",
+  "reason": "No locked Build Spec and no approved Sprint."
+}
