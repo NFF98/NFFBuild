@@ -1,6 +1,6 @@
 # NFFBuild
 
-> NodeFastFun (NodeFF / NFF) 的 implementation / delivery repository。
+> NodeFastFun (NodeFF / NFF) implementation / delivery / release repository。
 >
 > **本 Repo 不是 Product Design SSOT。**
 
@@ -15,6 +15,12 @@ NFFBuild/build-spec/baselines/BS-*/
         ↓ Sprint activation
 NFFBuild/src + tests
 = Cursor implementation
+        ↓ CI / Sprint Close
+NFFBuild/releases/
+= approved Release Candidate
+        ↓ automated staging + production pipeline
+Cloudflare + Supabase
+= deployed runtime
 ```
 
 硬規則：
@@ -23,23 +29,25 @@ NFFBuild/src + tests
 2. Cursor 不得直接修改 NodeFF `working/`。
 3. Cursor 不得修改已鎖定的 Build Spec baseline。
 4. Build 不符預期時先建立 Finding，不直接改 Spec。
-5. IMPLEMENTATION_BUG / TEST_BUG 可留在 implementation fast loop。
-6. SPEC_AMBIGUITY / DESIGN_DELTA_CANDIDATE / BUILD_BLOCKER 必須 quarantine 受影響 task。
-7. 真正 Design Delta 必須回 NodeFF Working → User approval → 新 Build Spec baseline。
-8. 舊 baseline 永不 inplace edit，只能被新 baseline supersede。
-9. Code / tests 永遠不能反向成為產品真相。
-10. 一次只執行一個 active Sprint。
+5. Code / tests 永遠不能反向成為產品真相。
+6. 一次只執行一個 active Sprint / active Task。
+7. Release 必須綁定 locked Build Spec、closed Sprint、source commit、User approval。
+8. Release Manifest 不允許任意 shell command，只能使用受控 deployment target。
+9. Production DB migration 只能 forward-compatible / expand-only；不得自動 destructive rollback。
+10. Production deploy 失敗時，Cloudflare code target 可自動 rollback；DB 保持 forward-compatible。
 
 ## Current Mode
 
 ```text
-REPOSITORY_STATE = GOVERNANCE_READY
+REPOSITORY_STATE = GOVERNANCE_RELEASE_PIPELINE_READY
 ACTIVE_BUILD_SPEC = NONE
 ACTIVE_SPRINT = NONE
+ACTIVE_RELEASE = NONE
 CURSOR_PRODUCT_IMPLEMENTATION = HOLD
+PRODUCTION_RELEASE = HOLD
 ```
 
-目前已建立安全開發骨架，但在第一個 Build Spec Freeze Gate 完成前，不得開始 NodeFF 產品 implementation。
+目前已建立 Build / Sprint / Harness / CI/CD / Release 安全骨架。在第一個 Build Spec Freeze Gate 與 Release Candidate 批准前，不會部署任何 NodeFF 產品。
 
 ## Cursor Start Here
 
@@ -51,8 +59,13 @@ CURSOR_PRODUCT_IMPLEMENTATION = HOLD
 6. Active locked Build Spec
 7. mapped Acceptance / tests
 
-執行治理檢查：
+治理檢查：
 
 ```bash
 npm run gate
+npm run product:ci
 ```
+
+Release：
+- `releases/README.md`
+- `deploy/README.md`

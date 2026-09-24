@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "required_when_implementation_enabled": [
+    "check:types",
+    "check:lint",
+    "test:unit",
+    "test:contract",
+    "test:regression",
+    "build"
+  ],
+  "release_requires_product_ci": true
+}

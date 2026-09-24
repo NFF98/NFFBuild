@@ -5,7 +5,7 @@
 ## Absolute Rules
 
 - Product truth 不在本 Repo 產生；來源是已批准的 locked Build Spec。
-- 未有 active locked Build Spec + active Sprint 時，不得做產品 implementation。
+- 未有 active locked Build Spec + active Sprint + active Task 時，不得做產品 implementation。
 - 不得修改 `build-spec/baselines/<existing-baseline>/`。
 - 不得建立 `working/`、`spec/`、`execution/` shadow trees。
 - 不得把 code behavior、library limitation 或「比較好做」反推成 product truth。
@@ -14,6 +14,10 @@
 - 同一 implementation strategy 失敗兩次，停止 retry loop，建立 Finding。
 - 修復必須維持 Acceptance/Test traceability。
 - Sprint 外工作不得混入當前 Sprint commit。
+- Cursor 不得自行建立、批准或 promote Production Release。
+- Cursor 不得修改 `ci/`、`deploy/`、`releases/` 的 governance contract 來繞過失敗 Gate。
+- Production deployment 只能由 GitHub Release workflow + approved Release Manifest 執行。
+- DB migration 失敗或要求 destructive rollback 時，停止 Release，不得自行重寫 production history。
 
 ## Read Order
 
@@ -49,3 +53,19 @@ Spec ambiguity / Design issue / Build blocker
 ```
 
 任何情況不得直接 patch locked Build Spec。
+
+## Release Loop
+
+```text
+Closed Sprint
+→ Release Manifest
+→ Human Release Approval
+→ REL-* promotion tag
+→ Staging deploy
+→ Smoke
+→ Production deploy
+→ Smoke
+→ PASS / code rollback
+```
+
+Release automation 執行既有 approved contract；它不是新的產品決策層。
