@@ -39,7 +39,12 @@
     "AGENTS.md",
     "delivery/backlog/",
     "delivery/templates/",
-    "delivery/deltas/"
+    "delivery/deltas/",
+    "tooling/",
+    "tsconfig.json",
+    "eslint.config.mjs",
+    "vitest.config.ts",
+    "playwright.config.ts"
   ],
   "cursor_product_implementation_requires": [
     "active_locked_build_spec",

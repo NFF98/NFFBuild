@@ -1,3 +1,3 @@
 # Responsive Tests
 
-Desktop / mobile viewport behavior and layout invariants。
+Use Playwright projects / viewports to verify desktop + mobile layout and interaction invariants。

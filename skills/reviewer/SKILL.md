@@ -10,9 +10,10 @@
 2. Traceability：Backlog → Task → AC/Test → code/test → Evidence。
 3. Semantic drift：code/test 是否偷偷改 expected behavior。
 4. Correctness：錯誤、edge case、state transition、recovery。
-5. Security：secret、權限、輸入驗證、unsafe execution。
-6. Maintainability：只有與 Task 相關的必要複雜度。
-7. Regression：既有 verified behavior 是否被破壞。
+5. Static quality：TypeScript + ESLint Gate。
+6. Security：CodeQL、npm audit、secret、權限、輸入驗證、unsafe execution。
+7. Browser verification：需要時檢查 Playwright / axe evidence。
+8. Regression：既有 verified behavior 是否被破壞。
 
 ## Output
 

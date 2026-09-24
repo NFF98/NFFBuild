@@ -10,14 +10,28 @@
 - relevant Function/shared contract
 - active Task acceptance_links
 - existing tests in matching family
+- `tooling/TOOLCHAIN.json`
+
+## Tool Routing
+
+- unit / contract / behavior / API / runtime / state-machine / regression → **Vitest**
+- real browser E2E / responsive / visual → **Playwright**
+- accessibility → **Playwright + @axe-core/playwright**
+- type contract → **TypeScript**
+- static code correctness → **ESLint**
+- security finding → **CodeQL / npm audit / Dependabot evidence**
+
+Do not introduce Jest or Cypress for the same role without an approved Toolchain change.
 
 ## Placement
 
+- unit → `tests/unit/`
 - schema/contract → `tests/contract/`
 - function behavior → `tests/behavior/`
 - API → `tests/api/`
 - runtime → `tests/runtime/`
 - state transition → `tests/state-machine/`
+- browser E2E → `tests/e2e/`
 - visual → `tests/visual/`
 - responsive → `tests/responsive/`
 - accessibility → `tests/accessibility/`

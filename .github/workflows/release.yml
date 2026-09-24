@@ -77,6 +77,12 @@ jobs:
         env:
           DEPLOY_BASE_URL: ${{ secrets.DEPLOY_BASE_URL }}
         run: npm run deploy:smoke -- --environment staging --release "$RELEASE_ID"
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Browser release gate
+        env:
+          PLAYWRIGHT_BASE_URL: ${{ secrets.DEPLOY_BASE_URL }}
+        run: npm run product:release-ci
       - uses: actions/upload-artifact@v4
         if: always()
         with:

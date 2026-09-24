@@ -1,3 +1,3 @@
 # Visual Tests
 
-Canonical screen / overlay visual regression。Machine diff 不取代 human materiality review。
+Use Playwright screenshots / snapshot comparison for canonical screens and overlays。Visual diff屬 semi-automated gate：machine diff 不自行決定 material product change。
