@@ -1,7 +1,20 @@
 # Tests
 
-Planned harness-aligned families:
+Test meaning 來自 Locked Build Spec Acceptance/Test Registry；Tests 驗證 contract，不重新定義 contract。
 
-schema / contract / api / behavior / state-machine / runtime / visual / responsive / accessibility / regression。
+正式 family：
 
-Test meaning comes from the locked Build Spec Acceptance/Test registry. Tests validate contracts; they do not redefine contracts.
+```text
+tests/
+├─ contract/
+├─ behavior/
+├─ api/
+├─ runtime/
+├─ state-machine/
+├─ visual/
+├─ responsive/
+├─ accessibility/
+└─ regression/
+```
+
+目前 Build = HOLD；各 family 只有結構說明，不含 NodeFF product tests。

@@ -1,32 +1,28 @@
-# Delivery Operating Model
+# Delivery Operating Structure
 
-本目錄控制 Cursor 實際開發，但不定義產品真相。
+本目錄控制「做什麼、何時做、怎麼證明完成」，但不定義產品真相。
 
 ```text
 Locked Build Spec
-→ Sprint Plan
+→ Backlog
+→ Sprint
 → Task
-→ Implement
-→ Test
-→ Review
-→ Gate Report
-→ Close
+→ Implementation / Test
+→ Evidence
+→ Sprint Gate
+→ Release Candidate
 ```
 
-問題先 Detect → Finding quarantine → Classify。
+## Directories
 
-- IMPLEMENTATION_BUG → fix code → test → verify
-- TEST_BUG → fix test/harness → verify
-- SPEC_AMBIGUITY → BLOCK task → human gate
-- DESIGN_DELTA_CANDIDATE → BLOCK task → human gate
-- BUILD_BLOCKER → evidence + impact assessment
+- `backlog/`：由 Locked Build Spec + Acceptance 派生的 approved work queue。
+- `sprints/`：當期 Sprint manifests / tasks / gate result。
+- `findings/`：Build 異常 quarantine。
+- `deltas/`：Finding 經治理後的受控變更。
+- `evidence/`：Task/Test/Review/Artifact verification records。
+- `reports/`：跨 Sprint / Gate summary。
+- `templates/`：machine-readable templates。
 
-只有批准後的 DESIGN_DELTA 可以啟動 upstream Working change / Build Spec rebaseline。
+## Hard Rule
 
-同時間只允許一個 active Sprint。每個 task 必須綁定 active Build Spec、Acceptance ID、Test ID、scope 與 completion evidence。
-
-Delta lifecycle：
-`Detect → Record → Assess Owner → Fix/Approve → Test → Verify → Close`
-
-Delta type：
-DESIGN_DELTA / IMPLEMENTATION_DELTA / TEST_DELTA / DEBUG_FINDING / FIX_DELTA。
+Backlog、Sprint、Code、Test、Evidence 都不能改寫 Build Spec semantics。若需要新的產品決策，必須走 Finding → Design Delta → NodeFF Working → User approval → Rebaseline。

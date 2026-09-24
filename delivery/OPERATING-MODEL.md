@@ -3,55 +3,64 @@
 ## 1. Authority
 
 ```text
-NFF98/NodeFF/working/ = Design Current Truth
-NFFBuild/build-spec/  = approved immutable implementation baseline
-NFFBuild/delivery/    = execution control
-NFFBuild/src + tests  = implementation result
+NodeFF/working = Design Current Truth
+build-spec     = frozen implementation truth for a build baseline
+backlog        = work derived from that baseline
+sprint/task    = selected execution scope
+src/tests      = implementation
+evidence       = proof of completion
+release        = approved deployment control
 ```
 
-Code、tests、Cursor opinion、library limitation 都不能反向覆蓋產品真相。
+Code、tests、Backlog、Cursor opinion、library limitation 都不能反向覆蓋產品真相。
 
 ## 2. Build Enable Sequence
 
 ```text
 NodeFF Working clean
 → Build Freeze audit
-→ User approves baseline
-→ BS-* LOCKED
-→ Sprint planned from that baseline
+→ User approves BS-*
+→ generate Backlog from BS-* + AC registry
+→ Backlog Gate
+→ Sprint plan from READY backlog
 → User approves Sprint activation
 → exactly one Active Task
-→ Cursor automation enabled for that Task only
+→ required Agent Skill(s)
+→ Cursor automation
+→ Evidence
+→ Sprint Close
+→ Release
 ```
 
-沒有 locked baseline、active Sprint 或 active Task 任一項，產品 implementation = HOLD。
+## 3. Backlog Rule
 
-## 3. Sprint Lifecycle
+Backlog 是 Build Spec 的 projection，不是新的需求層。
 
-```text
-PLANNED → ACTIVE → BLOCKED | REVIEW → CLOSED
-```
+- 每個 item 必須 map 到 active baseline 中真實存在的 Acceptance/Test。
+- 不得新增未存在於 Build Spec 的產品行為。
+- `SPRINTED` 必須指向存在的 Sprint。
+- Sprint Task 必須反向引用 Backlog Item。
+- Build Spec Rebaseline 後，舊 baseline 的未完成 item 不得偷偷沿用；必須重新 bind / regenerate。
 
-- `PLANNED`：未開工。
-- `ACTIVE`：只有 `active_task` 可被執行。
-- `BLOCKED`：停止 `src/` / `tests/` 產品變更；允許 Finding / governance resolution。
-- `REVIEW`：只允許與 active Task scope 有關的修正、測試、證據。
-- `CLOSED`：Gate report 完成且無 blocking Finding。
+## 4. Sprint / Task
 
-## 4. Task Contract
+同時只允許一個 active Sprint、一個 active Task。
 
-每個 Task 必須固定：
-
+Task 必須固定：
+- backlog item(s)
 - Build Spec ID
-- Acceptance ID ↔ Test ID mapping
-- `allowed_write_paths`
-- required verification commands
-- scope / non-scope
-- `product_decision_allowed = false`
+- AC ↔ Test mapping
+- allowed_write_paths
+- required commands
+- required skills
+- completion evidence
+- product_decision_allowed = false
 
-Task 需要修改 allowlist 以外的檔案時，不得自行擴張；先建立 Finding。
+## 5. Task Close
 
-## 5. Fast Loop — Cursor 可自動處理
+`VERIFIED/CLOSED` Task 必須有 Evidence record，且 Evidence 必須指回相同 Build Spec / Sprint / Task。
+
+## 6. Fast Loop
 
 ```text
 IMPLEMENTATION_BUG / TEST_BUG
@@ -62,59 +71,22 @@ IMPLEMENTATION_BUG / TEST_BUG
 → verify
 ```
 
-同一 implementation strategy 最多失敗兩次；第三次以前必須停止 retry，留下 Finding。
+同策略最多失敗兩次。
 
-## 6. Slow Loop — Human Governance
+## 7. Slow Loop
 
 ```text
 SPEC_AMBIGUITY / DESIGN_DELTA_CANDIDATE / contract-affecting BUILD_BLOCKER
 → Task BLOCKED
-→ Sprint BLOCKED when active task affected
-→ Finding evidence
-→ Human classification
-→ DESIGN_DELTA if needed
-→ NodeFF Working update
+→ Finding
+→ Human governance
+→ NodeFF Working if needed
 → User approval
-→ new BS-* baseline
-→ rebind affected Task
-→ explicit resume
-```
-
-舊 Build Spec 永遠不 inplace edit。
-
-## 7. Delta Ownership
-
-| Type | Meaning | Contract semantics | Default owner | Build Spec impact |
-|---|---|---|---|---|
-| DESIGN_DELTA | Product / UX / API / Data / Runtime contract 要改 | MAY CHANGE | Human Governance | May require rebaseline |
-| IMPLEMENTATION_DELTA | internal implementation plan changed | MUST NOT CHANGE | Cursor | No |
-| TEST_DELTA | test mechanics / harness correction | MUST NOT CHANGE | Cursor/Human | No |
-| DEBUG_FINDING | diagnostic discovery / evidence | MUST NOT CHANGE | Cursor | No |
-| FIX_DELTA | bounded defect fix | MUST NOT CHANGE | Cursor | No |
-
-只要非 DESIGN_DELTA 需要改 expected product behavior，就分類錯誤，必須升級成 Design path。
-
-## 8. Rebaseline
-
-```text
-BS-P1-001 LOCKED
-→ Design Delta approved upstream
-→ affected Sprint BLOCKED
-→ BS-P1-002 created from approved Working commit
-→ manifest.supersedes = BS-P1-001
-→ content + Acceptance validation
-→ User approves activation
-→ affected tasks rebind
+→ new BS-*
+→ regenerate/rebind affected Backlog + Task
 → resume
 ```
 
-## 9. Sprint Close
+## 8. Release
 
-Sprint 不因 build 成功自動 CLOSED。Close Gate 至少需要：
-
-- all required Tasks VERIFIED/CLOSED;
-- mapped Acceptance/Test complete;
-- regression gate pass;
-- no blocking Finding / unresolved Design Delta;
-- Gate report references implementation commit and baseline;
-- Human Sprint Close Gate approval。
+只有 Closed Sprint + PASS gate-result + approved Release Manifest 才能進 Staging / Production。

@@ -4,10 +4,11 @@ import path from 'node:path';
 const root=process.cwd(), errors=[];
 const read=r=>JSON.parse(fs.readFileSync(path.join(root,r),'utf8'));
 const exists=r=>fs.existsSync(path.join(root,r));
-const cs=read('delivery/CURRENT-SPRINT.json'), cb=read('build-spec/CURRENT.json');
+const cs=read('delivery/CURRENT-SPRINT.json'), cb=read('build-spec/CURRENT.json'), backlog=read('delivery/backlog/QUEUE.json');
 const sprintStates=new Set(['HOLD','PLANNED','ACTIVE','BLOCKED','REVIEW','CLOSED']);
 const taskStates=new Set(['PLANNED','IN_PROGRESS','BLOCKED','REVIEW','VERIFIED','CLOSED']);
-const protectedPrefixes=['build-spec/','harness/','.cursor/','.github/','delivery/templates/','delivery/deltas/'];
+const protectedPrefixes=['build-spec/','harness/','ci/','deploy/','releases/','.cursor/','.github/','delivery/templates/','delivery/deltas/'];
+const backlogById=new Map((backlog.items||[]).map(x=>[x.backlog_item_id,x]));
 
 if(!sprintStates.has(cs.status)) errors.push('Invalid CURRENT-SPRINT status.');
 if(cs.active_sprint===null){
@@ -38,6 +39,12 @@ if(cs.active_sprint===null){
       if(!taskStates.has(t.status)) errors.push('Invalid task status: '+t.task_id);
       if(t.build_spec_id!==cb.active_baseline) errors.push('Task baseline mismatch: '+t.task_id);
       if(t.product_decision_allowed!==false) errors.push('product_decision_allowed must be false: '+t.task_id);
+      if(!Array.isArray(t.backlog_item_ids)||!t.backlog_item_ids.length) errors.push('Missing backlog mapping: '+t.task_id);
+      for(const bid of t.backlog_item_ids||[]){
+        const bi=backlogById.get(bid);
+        if(!bi) errors.push('Unknown backlog item '+bid+' in '+t.task_id);
+        else if(bi.build_spec_id!==t.build_spec_id) errors.push('Backlog baseline mismatch '+bid+' in '+t.task_id);
+      }
       if(!Array.isArray(t.acceptance_links)||!t.acceptance_links.length) errors.push('Missing Acceptance/Test mapping: '+t.task_id);
       for(const link of t.acceptance_links||[]){
         const a=activeAcceptance.get(link.acceptance_id);
@@ -50,6 +57,8 @@ if(cs.active_sprint===null){
         if(protectedPrefixes.some(x=>p.startsWith(x)) || p==='AGENTS.md') errors.push('Task may not write governance path in '+t.task_id+': '+p);
       }
       if(!Array.isArray(t.required_commands)||!t.required_commands.length) errors.push('Missing required_commands: '+t.task_id);
+      if(!Array.isArray(t.required_skills)) errors.push('required_skills must be array: '+t.task_id);
+      if(!Array.isArray(t.completion_evidence)) errors.push('completion_evidence must be array: '+t.task_id);
       if(t.task_id===cs.active_task) activeTaskObj=t;
     }
     if(!cs.active_task) errors.push('Active Sprint requires exactly one active_task pointer.');

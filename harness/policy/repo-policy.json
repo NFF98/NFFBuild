@@ -1,23 +1,20 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "design_source_repo": "NFF98/NodeFF",
-  "forbidden_top_level_directories": ["working", "spec", "execution"],
+  "forbidden_top_level_directories": ["working","spec","execution"],
   "immutable_after_merge": ["build-spec/baselines"],
-  "implementation_roots": ["src/", "tests/", "supabase/"],
-  "hold_exceptions": ["src/README.md", "tests/README.md"],
-  "governance_only_paths": [
-    "build-spec/",
-    "harness/",
-    "ci/",
-    "deploy/",
-    "releases/",
-    ".cursor/",
-    ".github/",
-    "AGENTS.md",
-    "delivery/templates/",
-    "delivery/deltas/"
+  "implementation_roots": ["src/","tests/","supabase/"],
+  "hold_exceptions": [
+    "src/README.md","tests/README.md",
+    "tests/contract/README.md","tests/behavior/README.md","tests/api/README.md","tests/runtime/README.md",
+    "tests/state-machine/README.md","tests/visual/README.md","tests/responsive/README.md",
+    "tests/accessibility/README.md","tests/regression/README.md"
   ],
-  "cursor_product_implementation_requires": ["active_locked_build_spec", "active_approved_sprint", "active_task"],
+  "governance_only_paths": [
+    "build-spec/","harness/","ci/","deploy/","releases/","skills/",
+    ".cursor/",".github/","AGENTS.md","delivery/templates/","delivery/deltas/"
+  ],
+  "cursor_product_implementation_requires": ["active_locked_build_spec","active_approved_sprint","active_task"],
   "finding_classifications": ["IMPLEMENTATION_BUG","TEST_BUG","SPEC_AMBIGUITY","DESIGN_DELTA_CANDIDATE","BUILD_BLOCKER"],
   "finding_statuses": ["OPEN","ASSESSING","BLOCKED","RESOLVED","CLOSED"],
   "delta_types": ["DESIGN_DELTA","IMPLEMENTATION_DELTA","TEST_DELTA","DEBUG_FINDING","FIX_DELTA"],
