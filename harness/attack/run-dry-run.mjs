@@ -94,6 +94,20 @@ function expectPass(name,cmd,args,{base,head="HEAD"}={}){
   results.push({name,expected:"PASS",actual:pass?"PASS":"FAIL",ok:pass,detail:(r.stderr||r.stdout).trim().split("\n").slice(0,4).join(" | ")});
   if(!pass) throw new Error("Positive case failed: "+name+"\n"+r.stdout+"\n"+r.stderr);
 }
+function expectHarnessPass(name,scripts,{base,head="HEAD"}={}){
+  for(const script of scripts) expectPass(name+" :: "+path.basename(script),"node",[script],{base,head});
+}
+const governanceHarness=[
+  "harness/scripts/validate-baseline.mjs",
+  "harness/scripts/governance-gate.mjs",
+  "harness/scripts/validate-activation.mjs",
+  "harness/scripts/validate-backlog.mjs",
+  "harness/scripts/validate-sprint.mjs",
+  "harness/scripts/validate-findings.mjs",
+  "harness/scripts/validate-evidence.mjs",
+  "harness/scripts/validate-release.mjs",
+  "harness/scripts/validate-change-scope.mjs"
+];
 
 const sourceA="a".repeat(40), sourceB="b".repeat(40);
 makeBaseline("BS-P9-001",{sourceCommit:sourceA,decisionRef:"DRYRUN-INITIAL"});
@@ -101,7 +115,7 @@ makeActivation("BS-P9-001",{type:"INITIAL_FREEZE",sourceCommit:sourceA,decisionR
 baseWorkState("BS-P9-001");
 write("package-lock.json",{name:"nff-build",version:"0.0.0",lockfileVersion:3,requires:true,packages:{"":{name:"nff-build",version:"0.0.0"}}});
 const fixtureBase=commit("fixture: valid active sprint");
-expectPass("valid fixture baseline","npm",["run","gate"],{});
+expectHarnessPass("valid fixture baseline",governanceHarness,{});
 
 write("src/outside/hack.ts","export const hack=true;\n");
 const outside=commit("attack: write outside task allowlist");
@@ -195,7 +209,7 @@ baseWorkState("BS-P9-002","BLOCKED","BLOCKED");
 const resolved=read("delivery/findings/BF-999.json"); resolved.status="RESOLVED"; write("delivery/findings/BF-999.json",resolved);
 write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-002",implementation_enabled:true,reason:"APPROVED_DRYRUN_REBASELINE"});
 const goodRebaseline=commit("positive: approved rebaseline remains blocked");
-expectPass("Approved rebaseline transition","npm",["run","gate"],{base:blockedBase,head:goodRebaseline});
+expectHarnessPass("Approved rebaseline transition",governanceHarness,{base:blockedBase,head:goodRebaseline});
 
 const passed=results.filter(x=>x.ok).length;
 console.log("\nATTACK DRY-RUN RESULT: "+passed+"/"+results.length+" expected outcomes observed");
