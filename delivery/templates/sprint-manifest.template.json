@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "sprint_id": "SP-P1-001",
   "status": "PLANNED",
   "build_spec_id": "BS-P1-001",
@@ -8,7 +9,9 @@
   "tasks_file": "tasks.json",
   "entry_gate": {
     "build_spec_locked": true,
+    "baseline_gate_passed": true,
     "acceptance_mapped": true,
-    "user_approved": false
+    "user_approved": false,
+    "approval_ref": null
   }
 }

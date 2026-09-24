@@ -6,18 +6,33 @@ Build Spec 不是新的 Design SSOT；它是從 `NFF98/NodeFF/working/` 經 User
 
 ```text
 NodeFF Working Current Truth
-→ consistency / delta / acceptance audit
+→ consistency / delta / acceptance / UI audit
 → User approval
 → Build Freeze
 → BS-P1-001 LOCKED
-→ Sprint
+→ Sprint Activation
 ```
 
-一旦 baseline merge 到 main：禁止修改、刪除、補檔、或為了讓 implementation pass 而重寫 contract。
+一旦 baseline merge 到 `main`：禁止修改、刪除、補檔、改 hash、或為了讓 implementation pass 而重寫 contract。
+
+## Required Baseline Shape
+
+```text
+build-spec/baselines/BS-P1-001/
+├─ manifest.json
+├─ functions/
+├─ shared/
+├─ UI-UX/
+└─ registries/
+   └─ acceptance-test-registry.json
+```
+
+`manifest.json` 必須 inventory baseline 內除 manifest 本身外的所有檔案，記錄每個 SHA-256，並提供 aggregate `content_sha256`。Harness 會重新計算，避免 baseline 內容被偷偷替換。
 
 若批准的 Design Delta 改變 implementation truth：
+
 ```text
-BS-P1-001 remains unchanged
+BS-P1-001 remains immutable
 → upstream Working updated
 → User rebaseline approval
 → BS-P1-002 added

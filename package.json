@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "gate": "node harness/scripts/governance-gate.mjs && node harness/scripts/validate-sprint.mjs && node harness/scripts/validate-findings.mjs",
+    "gate": "node harness/scripts/validate-baseline.mjs && node harness/scripts/governance-gate.mjs && node harness/scripts/validate-sprint.mjs && node harness/scripts/validate-findings.mjs && node harness/scripts/validate-change-scope.mjs",
+    "gate:baseline": "node harness/scripts/validate-baseline.mjs",
     "gate:governance": "node harness/scripts/governance-gate.mjs",
     "gate:sprint": "node harness/scripts/validate-sprint.mjs",
-    "gate:findings": "node harness/scripts/validate-findings.mjs"
+    "gate:findings": "node harness/scripts/validate-findings.mjs",
+    "gate:scope": "node harness/scripts/validate-change-scope.mjs"
   },
   "engines": { "node": ">=20" }
 }
