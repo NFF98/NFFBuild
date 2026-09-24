@@ -54,6 +54,7 @@ for(const file of jsonFiles('delivery/deltas')){
     if(['APPROVED','IMPLEMENTING','VERIFIED','CLOSED'].includes(d.status)){
       if(d.user_decision?.status!=='APPROVED' || !d.user_decision?.decision_ref) errors.push(d.delta_id+' approved lifecycle requires explicit User approval reference');
       if(!/^[0-9a-f]{40}$/.test(d.upstream_working_commit||'')) errors.push(d.delta_id+' approved lifecycle requires upstream Working commit');
+      if(d.replacement_build_spec_required!==true) errors.push(d.delta_id+' approved DESIGN_DELTA must require replacement Build Spec');
     }
     if(d.status==='CLOSED' && d.replacement_build_spec_required===true){
       if(!/^BS-P\d+-\d{3}$/.test(d.replacement_build_spec||'')) errors.push(d.delta_id+' closed Design Delta requires replacement Build Spec');

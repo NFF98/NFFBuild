@@ -1,17 +1,37 @@
-## Sprint / Baseline
-- Build Spec ID:
-- Sprint ID:
-- Task ID(s):
+## Scope
 
-## Traceability
-- Acceptance IDs:
-- Test IDs:
-- Finding / Delta IDs (if any):
+- Active Build Spec:
+- Sprint / Task:
+- Backlog Item(s):
+- AC/Test IDs:
 
-## Gate Checklist
-- [ ] Scope is inside the active Sprint.
-- [ ] No existing locked Build Spec baseline was modified.
-- [ ] No product behavior was invented by implementation.
-- [ ] Mapped tests pass.
-- [ ] `npm run gate` passes.
-- [ ] Any unresolved spec/design issue is quarantined as a Finding.
+## Change Type
+
+- [ ] Implementation
+- [ ] Test
+- [ ] Finding
+- [ ] Governance
+- [ ] Build Spec Freeze / Rebaseline
+- [ ] Release
+
+## Required Evidence
+
+- [ ] `npm run gate`
+- [ ] Required Task commands
+- [ ] Acceptance/Test evidence
+- [ ] No out-of-scope files
+
+## Governance-only changes
+
+Complete only when applicable:
+
+- User decision reference:
+- Source NodeFF Working commit:
+- Previous Build Spec:
+- New Build Spec:
+- Approved DESIGN_DELTA IDs:
+- [ ] Activation Record included
+- [ ] Affected Sprint was BLOCKED before rebaseline
+- [ ] CODEOWNER review required
+
+**Cursor/automation must not self-approve governance-only changes.**

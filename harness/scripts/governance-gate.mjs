@@ -24,18 +24,27 @@ if(current.active_baseline===null){
 const base=process.env.BASE_SHA, head=process.env.HEAD_SHA||'HEAD';
 if(base && !/^0+$/.test(base)){
   let diff='';
-  try{diff=execFileSync('git',['diff','--name-status','-M',base,head,'--','build-spec/baselines'],{encoding:'utf8'}).trim();}
-  catch{fail.push('Unable to calculate baseline immutability diff.');}
+  try{diff=execFileSync('git',['diff','--name-status','-M',base,head],{encoding:'utf8'}).trim();}
+  catch{fail.push('Unable to calculate governance diff.');}
+
   for(const line of diff.split('\n').filter(Boolean)){
-    const cols=line.split('\t');
-    const paths=cols.slice(1);
+    const cols=line.split('\t'), status=cols[0], paths=cols.slice(1);
     for(const changed of paths){
       const m=changed.match(/^build-spec\/baselines\/(BS-P\d+-\d{3})(?:\/|$)/);
-      if(!m) continue;
-      let existed=true;
-      try{execFileSync('git',['cat-file','-e',base+':build-spec/baselines/'+m[1]+'/manifest.json'],{stdio:'ignore'});}
-      catch{existed=false;}
-      if(existed) fail.push('Locked baseline changed after merge: '+changed);
+      if(m){
+        let existed=true;
+        try{execFileSync('git',['cat-file','-e',base+':build-spec/baselines/'+m[1]+'/manifest.json'],{stdio:'ignore'});}
+        catch{existed=false;}
+        if(existed) fail.push('Locked baseline changed after merge: '+changed);
+      }
+      const a=changed.match(/^build-spec\/activations\/(BS-P\d+-\d{3})\.json$/);
+      if(a){
+        let existed=true;
+        try{execFileSync('git',['cat-file','-e',base+':'+changed],{stdio:'ignore'});}
+        catch{existed=false;}
+        if(existed) fail.push('Activation Record is append-only and cannot be modified/deleted: '+changed);
+        if(!existed && !status.startsWith('A')) fail.push('New Activation Record must be added, not renamed into place: '+changed);
+      }
     }
   }
 }
