@@ -211,6 +211,54 @@ write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-002",im
 const goodRebaseline=commit("positive: approved rebaseline remains blocked");
 expectHarnessPass("Approved rebaseline transition",governanceHarness,{base:blockedBase,head:goodRebaseline});
 
+// Positive Sprint Activation transition: only the four state-control files may cross HOLD -> ACTIVE.
+cleanTo(fixtureBase);
+write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-001",implementation_enabled:false,reason:"DRYRUN_PLANNED"});
+write("delivery/CURRENT-SPRINT.json",{schema_version:1,active_sprint:null,active_build_spec:null,active_task:null,status:"HOLD",automation_mode:"SAFE_AUTOMATION",reason:"DRYRUN_PLANNED"});
+const plannedManifest=read("delivery/sprints/SP-P9-001/manifest.json");
+plannedManifest.status="PLANNED";
+plannedManifest.entry_gate.user_approved=false;
+plannedManifest.entry_gate.approval_ref=null;
+write("delivery/sprints/SP-P9-001/manifest.json",plannedManifest);
+const plannedTasks=read("delivery/sprints/SP-P9-001/tasks.json");
+plannedTasks.tasks[0].status="PLANNED";
+write("delivery/sprints/SP-P9-001/tasks.json",plannedTasks);
+const activationBase=commit("fixture: planned sprint awaiting activation");
+
+write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-001",implementation_enabled:true,reason:"DRYRUN_APPROVED_ACTIVATION"});
+const activeManifest=read("delivery/sprints/SP-P9-001/manifest.json");
+activeManifest.status="ACTIVE";
+activeManifest.entry_gate.user_approved=true;
+activeManifest.entry_gate.approval_ref="DRYRUN-SPRINT-ACTIVATION";
+write("delivery/sprints/SP-P9-001/manifest.json",activeManifest);
+const activeTasks=read("delivery/sprints/SP-P9-001/tasks.json");
+activeTasks.tasks[0].status="IN_PROGRESS";
+write("delivery/sprints/SP-P9-001/tasks.json",activeTasks);
+write("delivery/CURRENT-SPRINT.json",{
+  schema_version:1,active_sprint:"SP-P9-001",active_build_spec:"BS-P9-001",active_task:"T001",
+  status:"ACTIVE",automation_mode:"SAFE_AUTOMATION",reason:"DRYRUN_APPROVED_ACTIVATION"
+});
+const activationHead=commit("positive: approved sprint activation");
+expectPass("Approved Sprint Activation transition","node",["harness/scripts/validate-change-scope.mjs"],{base:activationBase,head:activationHead});
+
+cleanTo(activationBase);
+write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-001",implementation_enabled:true,reason:"DRYRUN_APPROVED_ACTIVATION"});
+const maliciousManifest=read("delivery/sprints/SP-P9-001/manifest.json");
+maliciousManifest.status="ACTIVE";
+maliciousManifest.entry_gate.user_approved=true;
+maliciousManifest.entry_gate.approval_ref="DRYRUN-SPRINT-ACTIVATION";
+write("delivery/sprints/SP-P9-001/manifest.json",maliciousManifest);
+const maliciousTasks=read("delivery/sprints/SP-P9-001/tasks.json");
+maliciousTasks.tasks[0].status="IN_PROGRESS";
+write("delivery/sprints/SP-P9-001/tasks.json",maliciousTasks);
+write("delivery/CURRENT-SPRINT.json",{
+  schema_version:1,active_sprint:"SP-P9-001",active_build_spec:"BS-P9-001",active_task:"T001",
+  status:"ACTIVE",automation_mode:"SAFE_AUTOMATION",reason:"DRYRUN_APPROVED_ACTIVATION"
+});
+write("harness/unauthorized-during-activation.txt","must remain blocked\n");
+const maliciousActivation=commit("attack: activation edits unrelated governance");
+expectFail("Sprint Activation cannot smuggle unrelated governance edits","harness/scripts/validate-change-scope.mjs",{base:activationBase,head:maliciousActivation});
+
 const passed=results.filter(x=>x.ok).length;
 console.log("\nATTACK DRY-RUN RESULT: "+passed+"/"+results.length+" expected outcomes observed");
 for(const r of results) console.log((r.ok?"PASS":"FAIL")+" | "+r.name+" | expected "+r.expected+" got "+r.actual);
