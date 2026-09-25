@@ -18,7 +18,7 @@ for(const id of dirs){
   assert(m.schema_version===1,id+' schema_version must be 1');
   assert(m.baseline_id===id,id+' baseline_id mismatch');
   assert(m.status==='LOCKED',id+' must be LOCKED');
-  assert(m.source_repo==='NFF98/NodeFF',id+' source_repo invalid');
+  assert(m.source_repo==='NFF98/appf2-design',id+' source_repo invalid');
   assert(/^[0-9a-f]{40}$/.test(m.source_working_commit||''),id+' invalid source_working_commit');
   assert(typeof m.created_at==='string' && !Number.isNaN(Date.parse(m.created_at)),id+' invalid created_at');
   assert(m.supersedes===null || /^BS-P\d+-\d{3}$/.test(m.supersedes||''),id+' invalid supersedes');

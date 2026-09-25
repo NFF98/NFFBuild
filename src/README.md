@@ -1,6 +1,6 @@
 # Source Code
 
-NodeFF implementation source lives here after the first Build Spec + Sprint are approved.
+appf2 implementation source lives here after the first Build Spec + Sprint are approved.
 
 Current status: **HOLD**.
 

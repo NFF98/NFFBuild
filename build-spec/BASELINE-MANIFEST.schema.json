@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "NFF Build Spec Baseline Manifest",
+  "title": "appf2 Build Spec Baseline Manifest",
   "type": "object",
   "required": [
     "schema_version", "baseline_id", "status", "source_repo", "source_working_commit",
@@ -11,7 +11,7 @@
     "schema_version": { "const": 1 },
     "baseline_id": { "type": "string", "pattern": "^BS-P[0-9]+-[0-9]{3}$" },
     "status": { "const": "LOCKED" },
-    "source_repo": { "const": "NFF98/NodeFF" },
+    "source_repo": { "const": "NFF98/appf2-design" },
     "source_working_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
     "created_at": { "type": "string", "format": "date-time" },
     "supersedes": { "type": ["string", "null"] },

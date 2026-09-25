@@ -1,13 +1,13 @@
-# NFFBuild
+# appf2-build
 
-> NodeFastFun (NodeFF / NFF) implementation / delivery / release repository。
+> appf2 (appf2 / appf2) implementation / delivery / release repository。
 >
 > **本 Repo 不是 Product Design SSOT。**
 
 ## One-glance Development Flow
 
 ```text
-NFF98/NodeFF/working/
+NFF98/appf2-design/working/
 = Design Current Truth
         ↓ User Build Freeze Gate
 build-spec/baselines/BS-*/
@@ -32,7 +32,7 @@ CI → Staging → Production → Smoke → Rollback
 
 ## Authority Boundary
 
-- `NFF98/NodeFF/working/`：唯一 Design Current Truth。
+- `NFF98/appf2-design/working/`：唯一 Design Current Truth。
 - `build-spec/`：User 批准後的 immutable implementation snapshot。
 - `delivery/backlog/`：只可從 active Build Spec 派生，不得創造新需求。
 - `delivery/sprints/`：從 Backlog 選取、綁定 AC/Test 的執行單位。

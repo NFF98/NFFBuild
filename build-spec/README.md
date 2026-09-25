@@ -2,10 +2,10 @@
 
 Cursor implementation 的唯一產品輸入區。
 
-Build Spec 不是新的 Design SSOT；它是從 `NFF98/NodeFF/working/` 經 User 批准 Build Freeze Gate 產生的 immutable implementation snapshot。
+Build Spec 不是新的 Design SSOT；它是從 `NFF98/appf2-design/working/` 經 User 批准 Build Freeze Gate 產生的 immutable implementation snapshot。
 
 ```text
-NodeFF Working Current Truth
+appf2 Working Current Truth
 → consistency / delta / acceptance / UI audit
 → User approval
 → Build Freeze
@@ -39,4 +39,4 @@ BS-P1-001 remains immutable
 → BS-P1-002 supersedes BS-P1-001
 ```
 
-第一個 baseline 只有在 NodeFF Working authority 清理、Delta 清帳、Acceptance/Test 完整、Function/Shared/Registry/UI cross-check 與 User 明確批准後才能建立。
+第一個 baseline 只有在 appf2 Working authority 清理、Delta 清帳、Acceptance/Test 完整、Function/Shared/Registry/UI cross-check 與 User 明確批准後才能建立。
