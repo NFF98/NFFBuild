@@ -307,6 +307,9 @@ try {
   // 7) Resume the same Sprint/Task on the replacement baseline.
   {
     const base = head();
+    const finding = readJson('delivery/findings/BF-902.json');
+    finding.status = 'RESOLVED';
+    writeJson('delivery/findings/BF-902.json', finding);
     const sm = readJson(`delivery/sprints/${SP}/manifest.json`);
     sm.status = 'ACTIVE';
     writeJson(`delivery/sprints/${SP}/manifest.json`, sm);
