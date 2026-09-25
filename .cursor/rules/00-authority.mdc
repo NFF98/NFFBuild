@@ -1,10 +1,10 @@
 ---
-description: NodeFF Build authority and no-product-invention rules
+description: appf2 Build authority and no-product-invention rules
 alwaysApply: true
 ---
 
-- This repository implements NodeFF; it does not define product truth.
-- Product Design Current Truth lives in NFF98/NodeFF/working/.
+- This repository implements appf2; it does not define product truth.
+- Product Design Current Truth lives in appf2/appf2-design/working/.
 - During implementation, the ONLY product input is the active locked baseline referenced by build-spec/CURRENT.json.
 - Never use chat, code behavior, old commits, comments, or library constraints as product authority.
 - Never create or edit a shadow working/spec/execution tree in this repo.

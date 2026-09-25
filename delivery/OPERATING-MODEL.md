@@ -1,9 +1,9 @@
-# NFFBuild Operating Model
+# appf2-build Operating Model
 
 ## 1. Authority
 
 ```text
-NodeFF/working = Design Current Truth
+appf2/working = Design Current Truth
 build-spec     = frozen implementation truth for a build baseline
 backlog        = work derived from that baseline
 sprint/task    = selected execution scope
@@ -17,7 +17,7 @@ Code、tests、Backlog、Cursor opinion、library limitation 都不能反向覆�
 ## 2. Build Enable Sequence
 
 ```text
-NodeFF Working clean
+appf2 Working clean
 → Build Freeze audit
 → User approves BS-*
 → generate Backlog from BS-* + AC registry
@@ -80,7 +80,7 @@ SPEC_AMBIGUITY / DESIGN_DELTA_CANDIDATE / contract-affecting BUILD_BLOCKER
 → Task BLOCKED
 → Finding
 → Human governance
-→ NodeFF Working if needed
+→ appf2 Working if needed
 → User approval
 → new BS-*
 → regenerate/rebind affected Backlog + Task
