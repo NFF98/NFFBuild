@@ -21,4 +21,4 @@ npm run dry-run:attack
 10. 合法 User-approved Sprint Activation 必須可以 PASS。
 11. Sprint Activation 不得夾帶無關 governance path 變更。
 
-此 suite 使用 temp Git repo，不污染真實 NFFBuild working tree。
+此 suite 使用 temp Git repo，不污染真實 appf2-build working tree。

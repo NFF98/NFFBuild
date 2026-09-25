@@ -15,7 +15,7 @@ alwaysApply: true
 Approved rebaseline:
 1. affected Sprint is BLOCKED first when a Sprint exists;
 2. approved DESIGN_DELTA exists with explicit User decision reference;
-3. NodeFF Working is changed and approved;
+3. appf2 Working is changed and approved;
 4. old baseline remains unchanged;
 5. a new BS-* baseline is added with supersedes + approved delta IDs;
 6. Human governance adds matching Activation Record;

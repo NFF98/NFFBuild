@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "NFF Build Spec Activation",
+  "title": "appf2 Build Spec Activation",
   "type": "object",
   "required": [
     "schema_version","baseline_id","previous_baseline","type","status",

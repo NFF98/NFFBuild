@@ -25,4 +25,4 @@ Locked Build Spec
 
 ## Hard Rule
 
-Backlog、Sprint、Code、Test、Evidence 都不能改寫 Build Spec semantics。若需要新的產品決策，必須走 Finding → Design Delta → NodeFF Working → User approval → Rebaseline。
+Backlog、Sprint、Code、Test、Evidence 都不能改寫 Build Spec semantics。若需要新的產品決策，必須走 Finding → Design Delta → appf2 Working → User approval → Rebaseline。
