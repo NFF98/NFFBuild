@@ -27,7 +27,7 @@ const cleanTo=ref=>{must(git("reset","--hard",ref).status===0,"git reset failed"
 
 fs.cpSync(source,repo,{recursive:true,filter:p=>!p.includes(path.sep+".git")&&!p.includes(path.sep+"node_modules")&&!p.includes(path.sep+".attack-dry-run")});
 must(git("init","-b","main").status===0,"git init failed");
-git("config","user.name","NFF Attack Dry Run");
+git("config","user.name","appf2 Attack Dry Run");
 git("config","user.email","attack@example.invalid");
 
 function makeBaseline(id,{sourceCommit,supersedes=null,deltas=[],decisionRef}){
@@ -41,7 +41,7 @@ function makeBaseline(id,{sourceCommit,supersedes=null,deltas=[],decisionRef}){
   const inventory=rels.map(rel=>({path:rel,sha256:fileSha(path.join(repo,base,rel))}));
   const aggregate=sha(inventory.map(x=>x.path+":"+x.sha256+"\n").join(""));
   write(base+"/manifest.json",{
-    schema_version:1,baseline_id:id,status:"LOCKED",source_repo:"NFF98/NodeFF",
+    schema_version:1,baseline_id:id,status:"LOCKED",source_repo:"NFF98/appf2-design",
     source_working_commit:sourceCommit,created_at:"2026-09-24T00:00:00Z",
     supersedes,approved_delta_ids:deltas,
     approval:{status:"USER_APPROVED",decision_ref:decisionRef},

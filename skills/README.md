@@ -1,4 +1,4 @@
-# NFFBuild Agent Skills
+# appf2-build Agent Skills
 
 Skills 定義「Agent 應該怎麼完成一類工作」；Harness 定義「什麼不准做」。
 

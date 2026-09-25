@@ -10,4 +10,4 @@ alwaysApply: true
 - SPEC_AMBIGUITY, DESIGN_DELTA_CANDIDATE, or contract-affecting BUILD_BLOCKER requires affected Task BLOCKED.
 - An implementation or test bug may use the Fast Loop only when contract semantics do not change.
 - Same strategy may fail at most twice; third attempt is forbidden.
-- Product/design change path is Finding → Human governance → NodeFF Working → User approval → new Build Spec → Activation → rebind.
+- Product/design change path is Finding → Human governance → appf2 Working → User approval → new Build Spec → Activation → rebind.
