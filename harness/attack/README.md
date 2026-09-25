@@ -18,5 +18,7 @@ npm run dry-run:attack
 7. 未批准 Release。
 8. HOLD 狀態偷寫 product code。
 9. 合法 HUMAN approved Rebaseline 必須可以 PASS。
+10. 合法 User-approved Sprint Activation 必須可以 PASS。
+11. Sprint Activation 不得夾帶無關 governance path 變更。
 
 此 suite 使用 temp Git repo，不污染真實 NFFBuild working tree。
