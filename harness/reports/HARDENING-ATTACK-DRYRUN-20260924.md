@@ -1,7 +1,7 @@
 # Hardening Gate / Attack Dry-run Report
 
 > Date: 2026-09-24
-> Repository: NFF98/NFFBuild
+> Repository: appf2/appf2-build
 > Repo-side Hardening HEAD under test: `04ed5f9e23b676a77e60d14795a7874a9b3f7df1`
 > Result: **PASS — 26 / 26 expected outcomes observed**
 > Execution: isolated temporary Git fixture using the same repository Harness gate scripts; no product code or real Build Spec was created.
@@ -13,7 +13,7 @@
 - Activation Records are append-only.
 - Rebaseline must supersede the previous baseline.
 - Rebaseline requires at least one approved `DESIGN_DELTA`.
-- Approved Design Delta must trace to explicit User decision + upstream NodeFF Working commit.
+- Approved Design Delta must trace to explicit User decision + upstream appf2 Working commit.
 - When an active Sprint exists, rebaseline requires previous Sprint state `BLOCKED`.
 - Backlog / Sprint / AC-Test binding must move to the replacement baseline.
 - Cursor-owned Design Delta approval is invalid.

@@ -1,6 +1,6 @@
 # Deploy / CD
 
-NodeFF Phase 1 deployment targets依 Design Current Truth：
+appf2 Phase 1 deployment targets依 Design Current Truth：
 
 - Web / static：Cloudflare Pages / CDN
 - Edge / Serverless：Cloudflare Workers
