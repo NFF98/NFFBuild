@@ -1,4 +1,4 @@
-# NFFBuild Harness
+# appf2-build Harness
 
 Harness 的工作是阻止 drift，不是替 Product 做決策。
 

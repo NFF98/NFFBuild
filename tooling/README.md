@@ -1,4 +1,4 @@
-# NFFBuild Toolchain
+# appf2-build Toolchain
 
 這裡記錄 Build Tooling 的固定角色與版本。工具必須服務 AC → Test → Evidence → Gate，不因「流行」而增加。
 

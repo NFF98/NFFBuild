@@ -1,4 +1,4 @@
-# NFFBuild Agent Contract
+# appf2-build Agent Contract
 
 本檔是所有 coding agent / Cursor 的 repository-level operating contract。
 
@@ -52,7 +52,7 @@ Spec ambiguity / Design issue / Build blocker
 → Finding
 → Quarantine affected task
 → Human assessment
-→ NodeFF Working change if approved
+→ appf2 Working change if approved
 → User approval
 → New Build Spec
 → Backlog/Task rebind

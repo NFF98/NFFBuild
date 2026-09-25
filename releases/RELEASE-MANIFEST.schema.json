@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "NFF Release Manifest",
+  "title": "appf2 Release Manifest",
   "type": "object",
   "required": [
     "schema_version","release_id","status","build_spec_id","source_commit","sprint_ids",

@@ -26,7 +26,7 @@
 Complete only when applicable:
 
 - User decision reference:
-- Source NodeFF Working commit:
+- Source appf2 Working commit:
 - Previous Build Spec:
 - New Build Spec:
 - Approved DESIGN_DELTA IDs:

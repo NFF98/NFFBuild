@@ -17,4 +17,4 @@ tests/
 └─ regression/
 ```
 
-目前 Build = HOLD；各 family 只有結構說明，不含 NodeFF product tests。
+目前 Build = HOLD；各 family 只有結構說明，不含 appf2 product tests。
