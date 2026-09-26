@@ -46,7 +46,8 @@
         "src/platform/capabilities/",
         "generated/capabilities/",
         "tests/contract/",
-        "tests/regression/"
+        "tests/regression/",
+        "package-lock.json"
       ],
       "required_commands": [
         "npm run gate",
