@@ -46,6 +46,17 @@ Skill = method，不是 permission。
 - Skill 不得授權 Product decision。
 - 需要未註冊 Skill / 未定產品行為時停止並升 governance。
 
+
+## Done Means Product + Engineering Quality
+
+- Test green 不是 Done；Task 必須同時通過 Product correctness、Engineering quality、Performance/complexity review 與 Evidence traceability。
+- Active Task 以 fail-closed write scope 執行：未明列在 `allowed_write_paths`，也不是 Finding/Evidence side effect 的檔案，一律不得修改。
+- 不得用 `.skip/.todo/.only`、obvious fake assertion、`@ts-ignore/@ts-nocheck`、blanket `eslint-disable` 製造假綠燈。
+- 不得把可避免的 repeated full scan / nested-loop blow-up / repeated parse-serialize-hash / unbounded loop-recursion / unnecessary large-object clone 當成「先過 AC 再說」。
+- Reviewer 必須對 readability、maintainability、algorithmic complexity、performance risk、architecture boundary、type safety、error handling、duplication、security、test quality、semantic drift 全部 PASS。
+- Task blocked_by 未 VERIFIED/CLOSED 前，不得啟動 dependent Task。
+- Task VERIFIED/CLOSED 前，mapped AC/Test、required commands、Reviewer 都必須有 PASS Evidence。
+
 ## Fast Loop
 
 ```text
