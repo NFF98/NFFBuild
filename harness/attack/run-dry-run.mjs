@@ -26,6 +26,10 @@ const commit=msg=>{must(git("add",".").status===0,"git add failed"); const r=git
 const cleanTo=ref=>{must(git("reset","--hard",ref).status===0,"git reset failed"); git("clean","-fd");};
 
 fs.cpSync(source,repo,{recursive:true,filter:p=>!p.includes(path.sep+".git")&&!p.includes(path.sep+"node_modules")&&!p.includes(path.sep+".attack-dry-run")});
+fs.rmSync(path.join(repo,"delivery","sprints"),{recursive:true,force:true});
+fs.mkdirSync(path.join(repo,"delivery","sprints"),{recursive:true});
+fs.rmSync(path.join(repo,"delivery","evidence"),{recursive:true,force:true});
+fs.mkdirSync(path.join(repo,"delivery","evidence"),{recursive:true});
 must(git("init","-b","main").status===0,"git init failed");
 git("config","user.name","appf2 Attack Dry Run");
 git("config","user.email","attack@example.invalid");
@@ -81,12 +85,12 @@ function baseWorkState(id,status="ACTIVE",taskStatus="IN_PROGRESS"){
     status,automation_mode:"SAFE_AUTOMATION",reason:"ATTACK_DRY_RUN"
   });
   write("delivery/sprints/SP-P9-001/manifest.json",{
-    schema_version:1,sprint_id:"SP-P9-001",build_spec_id:id,status,
+    schema_version:1,sprint_id:"SP-P9-001",build_spec_id:id,status,backlog_item_ids:["BL-P9-001"],
     entry_gate:{build_spec_locked:true,baseline_gate_passed:true,acceptance_mapped:true,user_approved:true,approval_ref:"DRYRUN-SPRINT"}
   });
   write("delivery/sprints/SP-P9-001/tasks.json",{schema_version:3,sprint_id:"SP-P9-001",tasks:[{
     task_id:"T001",backlog_item_ids:["BL-P9-001"],title:"Fake task",status:taskStatus,build_spec_id:id,
-    scope:["fake"],non_scope:[],acceptance_links:[{acceptance_id:"F99-AC-001",test_id:"TEST-F99-001"}],
+    scope:["fake"],non_scope:["no extra scope"],acceptance_links:[{acceptance_id:"F99-AC-001",test_id:"TEST-F99-001"}],
     allowed_write_paths:["src/demo/","tests/behavior/"],required_commands:["npm run gate"],
     required_skills:["implementer","test-builder","reviewer"],parallel_safe:false,product_decision_allowed:false,
     blocked_by:[],completion_evidence:[]
@@ -118,6 +122,8 @@ const governanceHarness=[
   "harness/scripts/validate-sprint.mjs",
   "harness/scripts/validate-findings.mjs",
   "harness/scripts/validate-evidence.mjs",
+  "harness/scripts/validate-test-integrity.mjs",
+  "harness/scripts/validate-engineering-quality.mjs",
   "harness/scripts/validate-release.mjs",
   "harness/scripts/validate-change-scope.mjs"
 ];
@@ -137,12 +143,12 @@ write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-001",im
 write("delivery/CURRENT-SPRINT.json",{schema_version:1,active_sprint:null,active_build_spec:null,active_task:null,status:"HOLD",automation_mode:"SAFE_AUTOMATION",reason:"ROLE_PLANNING_HOLD"});
 const rolePlanningBase=commit("fixture: role planning hold");
 write("delivery/sprints/SP-P9-002/manifest.json",{
-  schema_version:1,sprint_id:"SP-P9-002",build_spec_id:"BS-P9-001",status:"PLANNED",goal:"role planning",scope:[],non_scope:[],tasks_file:"tasks.json",
+  schema_version:1,sprint_id:"SP-P9-002",build_spec_id:"BS-P9-001",status:"PLANNED",goal:"role planning",scope:["fake"],non_scope:["none"],tasks_file:"tasks.json",backlog_item_ids:["BL-P9-001"],
   entry_gate:{build_spec_locked:true,baseline_gate_passed:true,acceptance_mapped:true,user_approved:false,approval_ref:null}
 });
 write("delivery/sprints/SP-P9-002/tasks.json",{schema_version:3,sprint_id:"SP-P9-002",tasks:[{
   task_id:"T001",backlog_item_ids:["BL-P9-001"],title:"Planned by Planning Agent",status:"PLANNED",build_spec_id:"BS-P9-001",
-  scope:["fake"],non_scope:[],acceptance_links:[{acceptance_id:"F99-AC-001",test_id:"TEST-F99-001"}],
+  scope:["fake"],non_scope:["none"],acceptance_links:[{acceptance_id:"F99-AC-001",test_id:"TEST-F99-001"}],
   allowed_write_paths:["src/demo/","tests/behavior/"],required_commands:["npm run gate"],
   required_skills:["implementer","test-builder","reviewer"],parallel_safe:false,product_decision_allowed:false,blocked_by:[],completion_evidence:[]
 }]});
