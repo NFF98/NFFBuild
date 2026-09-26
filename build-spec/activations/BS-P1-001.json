@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "baseline_id": "BS-P1-001",
+  "previous_baseline": null,
+  "type": "INITIAL_FREEZE",
+  "status": "USER_APPROVED",
+  "decision_ref": "HUMAN-BUILD-FREEZE-BS-P1-001-20260926",
+  "approved_delta_ids": [],
+  "source_working_commit": "259f1e1b2277cf062611108c48112573ddc72cf0",
+  "activated_at": "2026-09-26T04:48:18.284Z"
+}
