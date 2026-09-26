@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { validateProjectionMap } from './projection-contract.mjs';
 
 const root=process.cwd(), errors=[];
 const readJson=rel=>JSON.parse(fs.readFileSync(path.join(root,rel),'utf8'));
@@ -24,6 +25,7 @@ for(const id of dirs){
   assert(m.supersedes===null || /^BS-P\d+-\d{3}$/.test(m.supersedes||''),id+' invalid supersedes');
   assert(Array.isArray(m.approved_delta_ids),id+' approved_delta_ids must be array');
   assert(m.approval?.status==='USER_APPROVED' && typeof m.approval?.decision_ref==='string' && m.approval.decision_ref.length>0,id+' missing User approval reference');
+  assert(m.projection_map==='projection-map.json',id+' projection_map must be projection-map.json');
   assert(Array.isArray(m.file_inventory),id+' file_inventory must be array');
   if(!Array.isArray(m.file_inventory)) continue;
 
@@ -56,6 +58,29 @@ for(const id of dirs){
   }
   const aggregate=crypto.createHash('sha256').update(actual.map(rel=>rel+':'+inventory.get(rel)+'\n').join('')).digest('hex');
   assert(m.content_sha256===aggregate,id+' content_sha256 mismatch');
+
+  const projectionPath=m.projection_map?path.join(dir,m.projection_map):null;
+  assert(projectionPath && fs.existsSync(projectionPath),id+' projection map file missing');
+  if(projectionPath && fs.existsSync(projectionPath)){
+    const projection=JSON.parse(fs.readFileSync(projectionPath,'utf8'));
+    const projectionErrors=validateProjectionMap(projection,{
+      expectedBaselineId:id,
+      expectedSourceRepo:m.source_repo,
+      expectedSourceCommit:m.source_working_commit
+    });
+    projectionErrors.forEach(e=>errors.push(id+' projection map: '+e));
+    assert(inventory.has(m.projection_map),id+' projection map missing from file_inventory');
+
+    if(Array.isArray(projection.entries)){
+      const projected=projection.entries.filter(e=>e.mode!=='REFERENCE_ONLY' && typeof e.target_path==='string');
+      const targetPaths=projected.map(e=>e.target_path).sort();
+      const accounted=[m.projection_map,...targetPaths].sort();
+      assert(JSON.stringify(actual)===JSON.stringify(accounted),id+' baseline contains files not accounted for by projection map');
+      for(const entry of projected){
+        assert(inventory.get(entry.target_path)===entry.output_sha256,id+' projection output hash mismatch in manifest inventory: '+entry.target_path);
+      }
+    }
+  }
 
   assert(typeof m.acceptance_registry==='string' && m.acceptance_registry.length>0,id+' acceptance_registry missing');
   const ar=m.acceptance_registry?path.join(dir,m.acceptance_registry):null;
