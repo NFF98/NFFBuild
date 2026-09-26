@@ -80,8 +80,25 @@ const filtered=[
   ]]
 ];
 
+const referenceOnly=[
+  ['working/README.md','Working structure / governance index; not executable Build Spec truth'],
+  ['working/DESIGN-WORKBENCH.md','Design decision workbench; governance/history reference only'],
+  ['working/common-core/BUSINESS-PLAN.md','Business/product strategy context; not executable Phase 1 Build Spec truth'],
+  ['working/common-core/TECHNICAL-MOAT.md','Long-term strategic/technical context; not executable Phase 1 Build Spec truth'],
+  ['working/common-core/DESIGN-TO-DELIVERY.md','Design-to-delivery governance process; not product implementation truth'],
+  ['working/detailed-design/functions/F08-DURABLE-IDENTITY-OWNERSHIP.md','Deferred function; outside Phase 1 Build Freeze scope'],
+  ['working/detailed-design/functions/F09-REALTIME-ROOM.md','Deferred function; outside Phase 1 Build Freeze scope'],
+  ['working/detailed-design/functions/F10-BLUEPRINT-REUSE-RETRIEVAL.md','Deferred function; outside Phase 1 Build Freeze scope'],
+  ['working/detailed-design/functions/F11-EXTERNAL-CAPABILITY-EXECUTION.md','Deferred function; outside Phase 1 Build Freeze scope'],
+  ['working/detailed-design/functions/F13-ENTITLEMENT-METERING.md','Deferred function; outside Phase 1 Build Freeze scope'],
+  ['working/detailed-design/functions/F14-PROVIDER-REGISTRY-CERTIFICATION.md','Deferred function; outside Phase 1 Build Freeze scope'],
+  ['working/detailed-design/functions/F15-TRANSACTION-SETTLEMENT.md','Deferred function; outside Phase 1 Build Freeze scope'],
+  ['working/detailed-design/functions/F17-WORKFLOW-ORCHESTRATION.md','Deferred function; outside Phase 1 Build Freeze scope']
+];
+
 must(full.length===40,'expected 40 FULL_COPY artifacts');
 must(filtered.length===7,'expected 7 SECTION_FILTERED artifacts');
+must(referenceOnly.length===13,'expected 13 REFERENCE_ONLY declarations');
 
 const entries=[];
 for(const [sourcePath,targetPath,verification] of full){
@@ -120,6 +137,22 @@ for(const [sourcePath,targetPath,includeBlocks] of filtered){
   });
 }
 
+
+for(const [sourcePath,exclusionReason] of referenceOnly){
+  const buffer=fs.readFileSync(path.join(designRoot,sourcePath));
+  const blob=gitBlobSha(buffer);
+  const gitSha=execFileSync('git',['-C',designRoot,'hash-object',sourcePath],{encoding:'utf8'}).trim();
+  must(blob===gitSha,'git blob helper mismatch: '+sourcePath);
+  entries.push({
+    source_path:sourcePath,
+    source_blob_sha:blob,
+    mode:'REFERENCE_ONLY',
+    phase_scope:'PHASE_1_APPLICABLE_TRUTH_ONLY',
+    freeze_audit_verification:'REFERENCE_ONLY_DECLARATION',
+    exclusion_reason:exclusionReason
+  });
+}
+
 const map={
   schema_version:1,
   baseline_id:'BS-P1-001',
@@ -133,9 +166,14 @@ const map={
 
 const errors=validateProjectionMap(map,{expectedBaselineId:'BS-P1-001',expectedSourceRepo:'NFF98/appf2-design',expectedSourceCommit:sourceCommit});
 must(errors.length===0,'candidate map validation failed: '+errors.join(' | '));
-must(new Set(entries.map(e=>e.source_path)).size===47,'source path uniqueness failed');
-must(new Set(entries.map(e=>e.target_path)).size===47,'target path uniqueness failed');
-must(entries.filter(e=>e.target_path.endsWith('.png')).length===11,'expected 11 PNG references');
+must(entries.length===60,'expected 60 total projection-map entries');
+must(new Set(entries.map(e=>e.source_path)).size===60,'source path uniqueness failed');
+const projectedEntries=entries.filter(e=>e.mode!=='REFERENCE_ONLY');
+const referenceEntries=entries.filter(e=>e.mode==='REFERENCE_ONLY');
+must(projectedEntries.length===47,'expected 47 projected artifacts');
+must(referenceEntries.length===13,'expected 13 REFERENCE_ONLY declarations');
+must(new Set(projectedEntries.map(e=>e.target_path)).size===47,'target path uniqueness failed');
+must(projectedEntries.filter(e=>e.target_path.endsWith('.png')).length===11,'expected 11 PNG references');
 
 fs.writeFileSync(mapPath,JSON.stringify(map,null,2)+'\n');
 const run=spawnSync('node',[
@@ -151,8 +189,10 @@ must(run.status===0,'real projector dry-run failed');
 
 console.log('CANDIDATE_PROJECTION_DRY_RUN: PASS');
 console.log('- source_commit: '+sourceCommit);
-console.log('- total entries: '+entries.length);
+console.log('- total map entries: '+entries.length);
+console.log('- projected artifacts: '+projectedEntries.length);
 console.log('- FULL_COPY: '+entries.filter(e=>e.mode==='FULL_COPY').length);
 console.log('- SECTION_FILTERED: '+entries.filter(e=>e.mode==='SECTION_FILTERED').length);
-console.log('- PNG byte hashes verified: '+entries.filter(e=>e.target_path.endsWith('.png')).length);
+console.log('- REFERENCE_ONLY: '+referenceEntries.length);
+console.log('- PNG byte hashes verified: '+projectedEntries.filter(e=>e.target_path.endsWith('.png')).length);
 console.log('- candidate_map_sha256: '+sha256(fs.readFileSync(mapPath)));
