@@ -41,9 +41,10 @@
       ],
       "dependencies": [],
       "priority": "P0",
-      "status": "READY",
+      "status": "SPRINTED",
       "product_decision_allowed": false,
-      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure.",
+      "sprint_id": "SP-P1-001"
     },
     {
       "backlog_item_id": "BL-P1-002",
@@ -103,9 +104,10 @@
         "BL-P1-001"
       ],
       "priority": "P0",
-      "status": "READY",
+      "status": "SPRINTED",
       "product_decision_allowed": false,
-      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure.",
+      "sprint_id": "SP-P1-001"
     },
     {
       "backlog_item_id": "BL-P1-003",
@@ -168,9 +170,10 @@
         "BL-P1-001"
       ],
       "priority": "P0",
-      "status": "READY",
+      "status": "SPRINTED",
       "product_decision_allowed": false,
-      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure.",
+      "sprint_id": "SP-P1-001"
     },
     {
       "backlog_item_id": "BL-P1-005",
@@ -1382,9 +1385,10 @@
       ],
       "dependencies": [],
       "priority": "P0",
-      "status": "READY",
+      "status": "SPRINTED",
       "product_decision_allowed": false,
-      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure.",
+      "sprint_id": "SP-P1-001"
     },
     {
       "backlog_item_id": "BL-P1-032",
@@ -1440,9 +1444,10 @@
         "BL-P1-031"
       ],
       "priority": "P1",
-      "status": "READY",
+      "status": "SPRINTED",
       "product_decision_allowed": false,
-      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure.",
+      "sprint_id": "SP-P1-001"
     },
     {
       "backlog_item_id": "BL-P1-033",

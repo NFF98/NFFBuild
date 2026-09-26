@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
   "active_baseline": "BS-P1-001",
-  "implementation_enabled": false,
-  "reason": "Human Build Freeze approved for BS-P1-001; implementation remains disabled pending Human Sprint Activation."
+  "implementation_enabled": true,
+  "reason": "Human Sprint Activation approved for SP-P1-001; T001 is the sole active Task."
 }
