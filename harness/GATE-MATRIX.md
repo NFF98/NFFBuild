@@ -4,6 +4,8 @@
 |---|---|---|
 | Forbidden shadow SSOT directories | FULL AUTO | Harness |
 | Locked baseline file/hash integrity | FULL AUTO | Harness |
+| Pinned Freeze Audit commit enforcement | FULL AUTO after audit PASS | Projection Gate |
+| Projection source blob / exact selector / output hash integrity | FULL AUTO | Projection Gate / Baseline Gate |
 | Old baseline mutation | FULL AUTO | Harness |
 | Toolchain version/config drift | FULL AUTO | Toolchain Gate |
 | Acceptance ID/Test ID existence + duplicates | FULL AUTO | Harness |
@@ -24,6 +26,7 @@
 | Implementation ↔ Build Spec semantic drift | SEMI AUTO | traceability + human semantic review |
 | Product behavior choice | HUMAN ONLY | User / governance |
 | DESIGN_DELTA approval | HUMAN ONLY | User |
+| Freeze Audit PASS / audited version selection | HUMAN ONLY | User / Design Audit |
 | Build Spec Freeze / Rebaseline | HUMAN ONLY | User |
 | Material visual change | HUMAN ONLY | User |
 | Public API / Data / Security / Runtime contract change | HUMAN ONLY | User |
