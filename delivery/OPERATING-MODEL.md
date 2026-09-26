@@ -79,7 +79,22 @@ Task 必須固定：
 
 ## 5. Task Close
 
-`VERIFIED/CLOSED` Task 必須有 Evidence record，且 Evidence 必須指回相同 Build Spec / Sprint / Task。
+Task completion 不是「Cursor 說完成」或「測試綠」：
+
+```text
+Mapped AC/Test PASS
++ required command PASS
++ Type / Lint / Security / Build PASS
++ Engineering Quality Review PASS
++ Semantic Drift Review PASS
++ Evidence complete
+= VERIFIED / CLOSED
+```
+
+`REVIEW` 前，mapped AC/Test + required commands 必須有 PASS Evidence。
+`VERIFIED/CLOSED` 前，另外必須有完整 Reviewer PASS，包含 readability、maintainability、algorithmic complexity、performance risk、architecture boundary、type safety、error handling、duplication、security、test quality、semantic drift。
+
+Task 的 `blocked_by` 未達 VERIFIED/CLOSED 時，dependent Task 不得成為 active Task。
 
 ## 6. Fast Loop
 
