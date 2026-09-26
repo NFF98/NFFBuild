@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "sprint_id": "SP-P1-001",
+  "status": "PLANNED",
+  "build_spec_id": "BS-P1-001",
+  "goal": "Establish Phase 1 platform foundations: trusted Capability Registry, canonical Blueprint identity, anonymous identity, and safe evidence intake primitives that unblock later validation/compiler/runtime work.",
+  "scope": [
+    "BL-P1-001 Canonical registry generation & version integrity",
+    "BL-P1-002 Capability admission, resolution & runtime trust",
+    "BL-P1-004 Canonical Blueprint identity & hash contract",
+    "BL-P1-031 Anonymous identity, privacy & non-fingerprinting",
+    "BL-P1-032 Evidence event validation, batching, retry & ingestion isolation"
+  ],
+  "non_scope": [
+    "No Sprint 2+ implementation.",
+    "No full F02 validation pipeline beyond canonical identity/hash.",
+    "No F03 Runtime execution engine.",
+    "No F00 consumer UI.",
+    "No F07 offline queue retention/observability metrics from BL-P1-033.",
+    "No Human Sprint Activation in this planning change."
+  ],
+  "tasks_file": "tasks.json",
+  "entry_gate": {
+    "build_spec_locked": true,
+    "baseline_gate_passed": true,
+    "acceptance_mapped": true,
+    "user_approved": false,
+    "approval_ref": null
+  }
+}
