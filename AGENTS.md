@@ -15,6 +15,15 @@
 - Cursor 不得自行建立、批准或 promote Production Release。
 - Production deployment 只能由 approved Release workflow 執行。
 
+## Role Boundary
+
+- HUMAN = Product / Governance authority：決定 Product truth、Sprint Activation、Design Delta、Sprint Close、Release Approval。
+- ChatGPT = sole Planning Agent：在 Sprint HOLD/PLANNED 階段使用 `task-planner`，把 Locked Build Spec + Backlog 投影成 Sprint Plan / Tasks，並執行 governance / readiness audit。
+- Cursor = Execution Agent：只消費已批准的 active Task，執行 implementation / test / debug / evidence / review；不得自行重做 Sprint Planning。
+- `task-planner` 不得出現在 implementation Task 的 `required_skills`。
+- Sprint ACTIVE/REVIEW 後，Cursor 不得新增 Task、重切 Task、改 AC/Test mapping、擴 `allowed_write_paths`、改 `required_commands` 或修改 Sprint plan/control files。
+- 若 Active Task 的規劃不足、scope 不夠或 write path 不足：停止受影響工作，建立 Finding，回 Planning Agent；不得自行擴張 Task。
+
 ## Mandatory Read Order
 
 ```text
