@@ -19,5 +19,5 @@ jobs:
           git -C design remote add origin https://github.com/NFF98/appf2-design.git
           git -C design fetch --depth=1 origin 259f1e1b2277cf062611108c48112573ddc72cf0
           git -C design checkout --detach FETCH_HEAD
-      - name: Run 47-artifact no-write Projection
+      - name: Run 47-artifact + 13-reference no-write Projection
         run: node harness/tmp/run-phase1-projection-dry-run.mjs
