@@ -341,7 +341,7 @@ write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-002",im
 const goodRebaseline=commit("positive: approved rebaseline remains blocked");
 expectHarnessPass("Approved rebaseline transition",governanceHarness,{base:blockedBase,head:goodRebaseline});
 
-// Positive Sprint Activation transition: only the four state-control files may cross HOLD -> ACTIVE.
+// Positive Sprint Activation transition: control files may cross HOLD -> ACTIVE without pretending product tests already exist.
 cleanTo(fixtureBase);
 write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-001",implementation_enabled:false,reason:"DRYRUN_PLANNED"});
 write("delivery/CURRENT-SPRINT.json",{schema_version:1,active_sprint:null,active_build_spec:null,active_task:null,status:"HOLD",automation_mode:"SAFE_AUTOMATION",reason:"DRYRUN_PLANNED"});
@@ -353,6 +353,10 @@ write("delivery/sprints/SP-P9-001/manifest.json",plannedManifest);
 const plannedTasks=read("delivery/sprints/SP-P9-001/tasks.json");
 plannedTasks.tasks[0].status="PLANNED";
 write("delivery/sprints/SP-P9-001/tasks.json",plannedTasks);
+const plannedBacklog=read("delivery/backlog/QUEUE.json");
+plannedBacklog.items[0].status="READY";
+delete plannedBacklog.items[0].sprint_id;
+write("delivery/backlog/QUEUE.json",plannedBacklog);
 const activationBase=commit("fixture: planned sprint awaiting activation");
 
 write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-001",implementation_enabled:true,reason:"DRYRUN_APPROVED_ACTIVATION"});
@@ -364,12 +368,17 @@ write("delivery/sprints/SP-P9-001/manifest.json",activeManifest);
 const activeTasks=read("delivery/sprints/SP-P9-001/tasks.json");
 activeTasks.tasks[0].status="IN_PROGRESS";
 write("delivery/sprints/SP-P9-001/tasks.json",activeTasks);
+const activeBacklog=read("delivery/backlog/QUEUE.json");
+activeBacklog.items[0].status="SPRINTED";
+activeBacklog.items[0].sprint_id="SP-P9-001";
+write("delivery/backlog/QUEUE.json",activeBacklog);
 write("delivery/CURRENT-SPRINT.json",{
   schema_version:1,active_sprint:"SP-P9-001",active_build_spec:"BS-P9-001",active_task:"T001",
   status:"ACTIVE",automation_mode:"SAFE_AUTOMATION",reason:"DRYRUN_APPROVED_ACTIVATION"
 });
 const activationHead=commit("positive: approved sprint activation");
-expectPass("Approved Sprint Activation transition","node",["harness/scripts/validate-change-scope.mjs"],{base:activationBase,head:activationHead});
+expectHarnessPass("Approved Sprint Activation transition",governanceHarness,{base:activationBase,head:activationHead});
+expectPass("Activation control-only Product CI does not require fake pre-code tests","node",["ci/run-product-ci.mjs"],{base:activationBase,head:activationHead});
 
 cleanTo(activationBase);
 write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-001",implementation_enabled:true,reason:"DRYRUN_APPROVED_ACTIVATION"});
@@ -381,6 +390,10 @@ write("delivery/sprints/SP-P9-001/manifest.json",maliciousManifest);
 const maliciousTasks=read("delivery/sprints/SP-P9-001/tasks.json");
 maliciousTasks.tasks[0].status="IN_PROGRESS";
 write("delivery/sprints/SP-P9-001/tasks.json",maliciousTasks);
+const maliciousBacklog=read("delivery/backlog/QUEUE.json");
+maliciousBacklog.items[0].status="SPRINTED";
+maliciousBacklog.items[0].sprint_id="SP-P9-001";
+write("delivery/backlog/QUEUE.json",maliciousBacklog);
 write("delivery/CURRENT-SPRINT.json",{
   schema_version:1,active_sprint:"SP-P9-001",active_build_spec:"BS-P9-001",active_task:"T001",
   status:"ACTIVE",automation_mode:"SAFE_AUTOMATION",reason:"DRYRUN_APPROVED_ACTIVATION"
