@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "build_spec_id": null,
-  "status": "HOLD",
+  "build_spec_id": "BS-P1-001",
+  "status": "OPEN",
   "items": []
 }

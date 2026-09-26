@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_baseline": null,
+  "active_baseline": "BS-P1-001",
   "implementation_enabled": false,
-  "reason": "No Build Spec Freeze Gate has been approved yet."
+  "reason": "Human Build Freeze approved for BS-P1-001; implementation remains disabled pending Human Sprint Activation."
 }
