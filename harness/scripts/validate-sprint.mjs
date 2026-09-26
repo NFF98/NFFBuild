@@ -33,7 +33,7 @@ if(cs.active_sprint===null){
 
     const manifest=read('build-spec/baselines/'+cb.active_baseline+'/manifest.json');
     const registry=read('build-spec/baselines/'+cb.active_baseline+'/'+manifest.acceptance_registry);
-    const activeAcceptance=new Map((registry.entries||[]).filter(e=>e.contract_status==='READY_FOR_IMPLEMENTATION').map(e=>[e.acceptance_id,e]));
+    const activeAcceptance=new Map((registry.entries||[]).filter(e=>e.contract_status==='ACTIVE' && e.required_for_build_freeze===true).map(e=>[e.acceptance_id,e]));
     const ids=new Set(); let activeTaskObj=null;
     for(const t of td.tasks||[]){
       if(ids.has(t.task_id)) errors.push('Duplicate task ID: '+t.task_id); ids.add(t.task_id);
