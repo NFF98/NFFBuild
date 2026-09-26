@@ -4,6 +4,10 @@ alwaysApply: true
 ---
 
 - build-spec/CURRENT.json names the only active baseline.
+- FREEZE AUDIT PASS is a version lock: Projection / Build Freeze must use that exact pinned Design commit, never moving main.
+- projection-map.json is required provenance for every locked baseline; source blob SHA, exact selectors, and output SHA must verify.
+- SECTION_FILTERED projection permits exact Markdown heading matching only. Never use fuzzy matching, regex guessing, or LLM classification to choose phase content.
+- Projector output is not approval. Cursor must never treat a successful Projection dry-run as Human Build Freeze.
 - Baselines are immutable after merge to main.
 - Activation Records are append-only governance artifacts.
 - Never create, edit, approve, or forge build-spec/activations/*.json as Cursor.
@@ -15,7 +19,7 @@ alwaysApply: true
 Approved rebaseline:
 1. affected Sprint is BLOCKED first when a Sprint exists;
 2. approved DESIGN_DELTA exists with explicit User decision reference;
-3. appf2 Working is changed and approved;
+3. appf2 Working is changed, affected Freeze Audit is rerun when material, and the new PASS commit is pinned;
 4. old baseline remains unchanged;
 5. a new BS-* baseline is added with supersedes + approved delta IDs;
 6. Human governance adds matching Activation Record;
