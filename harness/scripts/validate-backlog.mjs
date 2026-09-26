@@ -18,7 +18,7 @@ if(current.active_baseline===null){
 
   const manifest=read("build-spec/baselines/"+current.active_baseline+"/manifest.json");
   const reg=read("build-spec/baselines/"+current.active_baseline+"/"+manifest.acceptance_registry);
-  const ac=new Map((reg.entries||[]).filter(e=>e.contract_status==="READY_FOR_IMPLEMENTATION").map(e=>[e.acceptance_id,e]));
+  const ac=new Map((reg.entries||[]).filter(e=>e.contract_status==="ACTIVE" && e.required_for_build_freeze===true).map(e=>[e.acceptance_id,e]));
   const ids=new Set();
   for(const item of queue.items||[]){
     if(!/^BL-P\d+-\d{3,}$/.test(item.backlog_item_id||"")) errors.push("Invalid backlog item id: "+item.backlog_item_id);
