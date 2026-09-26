@@ -5,7 +5,7 @@ import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
 
 const source=process.cwd();
-const tmp=fs.mkdtempSync(path.join(os.tmpdir(),"nff-attack-"));
+const tmp=fs.mkdtempSync(path.join(os.tmpdir(),"appf2-attack-"));
 const repo=path.join(tmp,"repo");
 const results=[];
 
@@ -113,7 +113,7 @@ const sourceA="a".repeat(40), sourceB="b".repeat(40);
 makeBaseline("BS-P9-001",{sourceCommit:sourceA,decisionRef:"DRYRUN-INITIAL"});
 makeActivation("BS-P9-001",{type:"INITIAL_FREEZE",sourceCommit:sourceA,decisionRef:"DRYRUN-INITIAL"});
 baseWorkState("BS-P9-001");
-write("package-lock.json",{name:"nff-build",version:"0.0.0",lockfileVersion:3,requires:true,packages:{"":{name:"nff-build",version:"0.0.0"}}});
+write("package-lock.json",{name:"appf2-build",version:"0.0.0",lockfileVersion:3,requires:true,packages:{"":{name:"appf2-build",version:"0.0.0"}}});
 const fixtureBase=commit("fixture: valid active sprint");
 expectHarnessPass("valid fixture baseline",governanceHarness,{});
 
