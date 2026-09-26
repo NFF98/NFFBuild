@@ -130,6 +130,42 @@ write("package-lock.json",{name:"appf2-build",version:"0.0.0",lockfileVersion:3,
 const fixtureBase=commit("fixture: valid active sprint");
 expectHarnessPass("valid fixture baseline",governanceHarness,{});
 
+// Role-boundary positive/negative cases.
+// Planning Agent may create Sprint planning artifacts while the repo is HOLD.
+cleanTo(fixtureBase);
+write("build-spec/CURRENT.json",{schema_version:1,active_baseline:"BS-P9-001",implementation_enabled:false,reason:"ROLE_PLANNING_HOLD"});
+write("delivery/CURRENT-SPRINT.json",{schema_version:1,active_sprint:null,active_build_spec:null,active_task:null,status:"HOLD",automation_mode:"SAFE_AUTOMATION",reason:"ROLE_PLANNING_HOLD"});
+const rolePlanningBase=commit("fixture: role planning hold");
+write("delivery/sprints/SP-P9-002/manifest.json",{
+  schema_version:1,sprint_id:"SP-P9-002",build_spec_id:"BS-P9-001",status:"PLANNED",goal:"role planning",scope:[],non_scope:[],tasks_file:"tasks.json",
+  entry_gate:{build_spec_locked:true,baseline_gate_passed:true,acceptance_mapped:true,user_approved:false,approval_ref:null}
+});
+write("delivery/sprints/SP-P9-002/tasks.json",{schema_version:3,sprint_id:"SP-P9-002",tasks:[{
+  task_id:"T001",backlog_item_ids:["BL-P9-001"],title:"Planned by Planning Agent",status:"PLANNED",build_spec_id:"BS-P9-001",
+  scope:["fake"],non_scope:[],acceptance_links:[{acceptance_id:"F99-AC-001",test_id:"TEST-F99-001"}],
+  allowed_write_paths:["src/demo/","tests/behavior/"],required_commands:["npm run gate"],
+  required_skills:["implementer","test-builder","reviewer"],parallel_safe:false,product_decision_allowed:false,blocked_by:[],completion_evidence:[]
+}]});
+const rolePlanned=commit("positive: planning agent creates planned sprint");
+expectPass("Planning Agent may create Sprint plan while HOLD","node",["harness/scripts/validate-change-scope.mjs"],{base:rolePlanningBase,head:rolePlanned});
+
+// Cursor execution may not rewrite approved/active Sprint planning artifacts.
+cleanTo(fixtureBase);
+const activePlan=read("delivery/sprints/SP-P9-001/tasks.json");
+activePlan.tasks[0].allowed_write_paths.push("src/unauthorized-expansion/");
+write("delivery/sprints/SP-P9-001/tasks.json",activePlan);
+const replan=commit("attack: cursor expands active task write scope");
+expectFail("Cursor cannot rewrite Active Sprint Task plan","harness/scripts/validate-change-scope.mjs",{base:fixtureBase,head:replan});
+cleanTo(fixtureBase);
+
+// Planning Agent skills are not valid execution-task skills.
+const plannerInjected=read("delivery/sprints/SP-P9-001/tasks.json");
+plannerInjected.tasks[0].required_skills.push("task-planner");
+write("delivery/sprints/SP-P9-001/tasks.json",plannerInjected);
+const plannerSkill=commit("attack: cursor injects task-planner into execution task");
+expectFail("Execution Task cannot require task-planner","harness/scripts/validate-sprint.mjs",{base:fixtureBase,head:plannerSkill});
+cleanTo(fixtureBase);
+
 const badProjection=read("build-spec/baselines/BS-P9-001/projection-map.json");
 badProjection.freeze_audit.source_commit=sourceB;
 write("build-spec/baselines/BS-P9-001/projection-map.json",badProjection);

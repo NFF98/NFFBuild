@@ -32,6 +32,27 @@ appf2 Working clean
 → Release
 ```
 
+## 2.1 Human / Planning Agent / Cursor Boundary
+
+```text
+HUMAN
+  Product / Governance authority
+        ↓
+ChatGPT = sole Planning Agent
+  Backlog → Sprint Plan → Task definitions → Readiness Audit
+        ↓
+HUMAN Sprint Activation
+        ↓
+Cursor = Execution Agent
+  Implement → Test → Debug → Evidence → Review
+```
+
+- HUMAN owns Product decisions, Sprint Activation, Design Delta approval, Sprint Close and Release Approval.
+- ChatGPT is the sole Planning Agent for this operating model. Planning happens while Sprint is HOLD/PLANNED and uses the registered `task-planner` method.
+- Cursor does not create or redefine Sprint Tasks. Cursor consumes the active Task and only uses execution/review skills assigned to that Task.
+- Once Sprint is ACTIVE/REVIEW, Sprint manifest/task definitions are execution-immutable to Cursor. Any needed re-plan goes through Finding → BLOCK → Planning Agent / Human governance.
+- `task-planner` is not an execution permission and must never appear in an implementation Task `required_skills`.
+
 ## 3. Backlog Rule
 
 Backlog 是 Build Spec 的 projection，不是新的需求層。
