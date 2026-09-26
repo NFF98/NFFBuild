@@ -95,7 +95,16 @@ Before Human Sprint Activation:
 
 Activation is a control-state transition only. The Activation PR must not contain Product code.
 
-After the Activation PR passes its required gates and is merged:
+Activation PR must pass all four governance checks before merge:
+
+```text
+CI Gate
+Governance Gate
+Governance Attack Dry-run
+CodeQL
+```
+
+After the Activation PR passes all required gates and is merged:
 
 - exactly one Sprint may be active
 - exactly one Task may be active
@@ -254,7 +263,9 @@ Typical Sprint 1 expectation:
 - T003 Capability Coverage: normally no external platform required
 - T004 Blueprint identity/hash: no DB / LLM required
 - T005 Anonymous identity boundary: should first be implementable without Production DB
-- T006 Evidence ingestion: first explicit Human Manual Infrastructure Checkpoint
+- T006 Evidence envelope / intake / idempotent ingestion: first explicit Human Manual Infrastructure Checkpoint
+
+T006 is the first Sprint 1 Task that may require real infrastructure for Supabase PostgreSQL, DB migration, and edge ingestion.
 
 Before T006 starts, ChatGPT must re-audit the concrete implementation requirements. If a real Supabase environment is required, ChatGPT emits HUMAN_MANUAL_ACTION before Cursor proceeds.
 
@@ -376,7 +387,7 @@ Rules:
 
 ```text
 same path fails 2 times → change method
-single work item does not converge → hard stop and surface the blocker
+single work item has not converged within 10 minutes → hard stop and surface the blocker
 do not fan out across multiple repos unnecessarily
 do not extend a failing path with "almost done" reasoning
 ```
