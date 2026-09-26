@@ -66,12 +66,19 @@ for(const id of dirs){
     if(Array.isArray(reg.entries)){
       assert(m.acceptance_count===reg.entries.length,id+' acceptance_count mismatch');
       const aids=new Set(), tids=new Set();
+      const validStatuses=new Set(['ACTIVE','SUPERSEDED']);
       for(const e of reg.entries){
         assert(typeof e.acceptance_id==='string' && e.acceptance_id.length>0,id+' acceptance entry missing acceptance_id');
         if(aids.has(e.acceptance_id)) errors.push(id+' duplicate acceptance_id: '+e.acceptance_id); aids.add(e.acceptance_id);
-        if(e.contract_status==='READY_FOR_IMPLEMENTATION'){
-          assert(typeof e.test_id==='string' && e.test_id.length>0,id+' '+e.acceptance_id+' READY_FOR_IMPLEMENTATION missing test_id');
+        assert(validStatuses.has(e.contract_status),id+' '+e.acceptance_id+' invalid contract_status: '+e.contract_status);
+        assert(typeof e.required_for_build_freeze==='boolean',id+' '+e.acceptance_id+' required_for_build_freeze must be boolean');
+        if(e.contract_status==='ACTIVE'){
+          assert(e.required_for_build_freeze===true,id+' '+e.acceptance_id+' ACTIVE must be required_for_build_freeze=true');
+          assert(typeof e.test_id==='string' && e.test_id.length>0,id+' '+e.acceptance_id+' ACTIVE missing test_id');
           if(e.test_id){ if(tids.has(e.test_id)) errors.push(id+' duplicate active test_id: '+e.test_id); tids.add(e.test_id); }
+        }
+        if(e.contract_status==='SUPERSEDED'){
+          assert(e.required_for_build_freeze===false,id+' '+e.acceptance_id+' SUPERSEDED must be required_for_build_freeze=false');
         }
       }
     }
