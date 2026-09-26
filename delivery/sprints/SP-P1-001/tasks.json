@@ -1,0 +1,473 @@
+{
+  "schema_version": 3,
+  "sprint_id": "SP-P1-001",
+  "tasks": [
+    {
+      "task_id": "T001",
+      "backlog_item_ids": [
+        "BL-P1-001"
+      ],
+      "title": "Build canonical capability registry source and deterministic artifacts",
+      "status": "PLANNED",
+      "build_spec_id": "BS-P1-001",
+      "scope": [
+        "Implement F04 canonical CapabilityDefinition source contract.",
+        "Implement deterministic generation of compiler, validator, runtime and compatibility registry artifacts.",
+        "Enforce registry version/digest integrity, duplicate capability ref rejection and dependency-cycle rejection."
+      ],
+      "non_scope": [
+        "Do not implement full Runtime execution semantics.",
+        "Do not implement F02 Blueprint admission pipeline.",
+        "Do not move Registry into PostgreSQL."
+      ],
+      "acceptance_links": [
+        {
+          "acceptance_id": "F04-AC-001",
+          "test_id": "TEST-F04-AC-001"
+        },
+        {
+          "acceptance_id": "F04-AC-002",
+          "test_id": "TEST-F04-002"
+        },
+        {
+          "acceptance_id": "F04-AC-003",
+          "test_id": "TEST-F04-003"
+        },
+        {
+          "acceptance_id": "F04-AC-006",
+          "test_id": "TEST-F04-AC-006"
+        },
+        {
+          "acceptance_id": "F04-AC-007",
+          "test_id": "TEST-F04-007"
+        }
+      ],
+      "allowed_write_paths": [
+        "src/platform/capabilities/",
+        "generated/capabilities/",
+        "tests/contract/",
+        "tests/regression/"
+      ],
+      "required_commands": [
+        "npm run gate",
+        "npm run check:types",
+        "npm run check:lint",
+        "npm run test:contract",
+        "npm run test:regression"
+      ],
+      "required_skills": [
+        "implementer",
+        "test-builder",
+        "reviewer"
+      ],
+      "parallel_safe": false,
+      "product_decision_allowed": false,
+      "blocked_by": [],
+      "completion_evidence": []
+    },
+    {
+      "task_id": "T002",
+      "backlog_item_ids": [
+        "BL-P1-002"
+      ],
+      "title": "Enforce capability trust, admission and dependency safety",
+      "status": "PLANNED",
+      "build_spec_id": "BS-P1-001",
+      "scope": [
+        "Reject unknown capability/version and unavailable trusted runtime mappings.",
+        "Enforce no dynamic executable reference, disabled/revoked denial, resource ceilings and required dependency availability."
+      ],
+      "non_scope": [
+        "Do not implement semantic Coverage Result decisions beyond the safety/admission boundary.",
+        "Do not implement general F03 Runtime action execution."
+      ],
+      "acceptance_links": [
+        {
+          "acceptance_id": "F04-AC-004",
+          "test_id": "TEST-F04-004"
+        },
+        {
+          "acceptance_id": "F04-AC-005",
+          "test_id": "TEST-F04-005"
+        },
+        {
+          "acceptance_id": "F04-AC-008",
+          "test_id": "TEST-F04-008"
+        },
+        {
+          "acceptance_id": "F04-AC-009",
+          "test_id": "TEST-F04-009"
+        },
+        {
+          "acceptance_id": "F04-AC-010",
+          "test_id": "TEST-F04-AC-010"
+        },
+        {
+          "acceptance_id": "F04-AC-011",
+          "test_id": "TEST-F04-AC-011"
+        }
+      ],
+      "allowed_write_paths": [
+        "src/platform/capabilities/",
+        "generated/capabilities/",
+        "tests/contract/",
+        "tests/behavior/",
+        "tests/runtime/",
+        "tests/regression/"
+      ],
+      "required_commands": [
+        "npm run gate",
+        "npm run check:types",
+        "npm run check:lint",
+        "npm run test:contract",
+        "npm run test:behavior",
+        "npm run test:runtime",
+        "npm run test:regression"
+      ],
+      "required_skills": [
+        "implementer",
+        "test-builder",
+        "reviewer"
+      ],
+      "parallel_safe": false,
+      "product_decision_allowed": false,
+      "blocked_by": [
+        "T001"
+      ],
+      "completion_evidence": []
+    },
+    {
+      "task_id": "T003",
+      "backlog_item_ids": [
+        "BL-P1-002"
+      ],
+      "title": "Implement capability coverage and degradation semantics",
+      "status": "PLANNED",
+      "build_spec_id": "BS-P1-001",
+      "scope": [
+        "Produce complete material-requirement Coverage Result statuses.",
+        "Enforce semantic-core preservation rules for degradation.",
+        "Reject unknown LLM-suggested capabilities and prevent optional capability absence from blocking the Core Loop."
+      ],
+      "non_scope": [
+        "Do not implement F01 intent analysis or Blueprint composition.",
+        "Do not invent degradation semantics not present in the locked F04 contract."
+      ],
+      "acceptance_links": [
+        {
+          "acceptance_id": "F04-AC-012",
+          "test_id": "TEST-F04-012"
+        },
+        {
+          "acceptance_id": "F04-AC-013",
+          "test_id": "TEST-F04-AC-013"
+        },
+        {
+          "acceptance_id": "F04-AC-014",
+          "test_id": "TEST-F04-014"
+        },
+        {
+          "acceptance_id": "F04-AC-015",
+          "test_id": "TEST-F04-AC-015"
+        },
+        {
+          "acceptance_id": "F04-AC-016",
+          "test_id": "TEST-F04-AC-016"
+        }
+      ],
+      "allowed_write_paths": [
+        "src/platform/capabilities/",
+        "tests/contract/",
+        "tests/behavior/",
+        "tests/regression/"
+      ],
+      "required_commands": [
+        "npm run gate",
+        "npm run check:types",
+        "npm run check:lint",
+        "npm run test:contract",
+        "npm run test:behavior",
+        "npm run test:regression"
+      ],
+      "required_skills": [
+        "implementer",
+        "test-builder",
+        "reviewer"
+      ],
+      "parallel_safe": false,
+      "product_decision_allowed": false,
+      "blocked_by": [
+        "T002"
+      ],
+      "completion_evidence": []
+    },
+    {
+      "task_id": "T004",
+      "backlog_item_ids": [
+        "BL-P1-004"
+      ],
+      "title": "Implement canonical Blueprint serialization and content identity",
+      "status": "PLANNED",
+      "build_spec_id": "BS-P1-001",
+      "scope": [
+        "Implement canonical Blueprint serialization.",
+        "Implement stable SHA-256 content identity and content sensitivity.",
+        "Keep Runtime Instance state changes outside immutable Blueprint content identity."
+      ],
+      "non_scope": [
+        "Do not implement full Blueprint validation/admission.",
+        "Do not implement Compiler composition or Runtime hydration."
+      ],
+      "acceptance_links": [
+        {
+          "acceptance_id": "F02-AC-001",
+          "test_id": "TEST-F02-001"
+        },
+        {
+          "acceptance_id": "F02-AC-002",
+          "test_id": "TEST-F02-002"
+        },
+        {
+          "acceptance_id": "F02-AC-003",
+          "test_id": "TEST-F02-003"
+        },
+        {
+          "acceptance_id": "F02-AC-018",
+          "test_id": "TEST-F02-AC-018"
+        }
+      ],
+      "allowed_write_paths": [
+        "src/platform/blueprint/",
+        "tests/unit/",
+        "tests/contract/",
+        "tests/regression/"
+      ],
+      "required_commands": [
+        "npm run gate",
+        "npm run check:types",
+        "npm run check:lint",
+        "npm run test:unit",
+        "npm run test:contract",
+        "npm run test:regression"
+      ],
+      "required_skills": [
+        "implementer",
+        "test-builder",
+        "reviewer"
+      ],
+      "parallel_safe": false,
+      "product_decision_allowed": false,
+      "blocked_by": [
+        "T001"
+      ],
+      "completion_evidence": []
+    },
+    {
+      "task_id": "T005",
+      "backlog_item_ids": [
+        "BL-P1-031"
+      ],
+      "title": "Implement anonymous identity and privacy boundary",
+      "status": "PLANNED",
+      "build_spec_id": "BS-P1-001",
+      "scope": [
+        "Generate first-party random anonymous_id and browser-session identity without fingerprinting.",
+        "Treat anonymous identity as correlation only, never authorization.",
+        "Respect storage reset semantics and bounded last_seen behavior."
+      ],
+      "non_scope": [
+        "Do not implement account registration, login or durable ownership.",
+        "Do not perform cross-device identity stitching.",
+        "Do not implement outcome metrics."
+      ],
+      "acceptance_links": [
+        {
+          "acceptance_id": "F07-AC-001",
+          "test_id": "TEST-F07-AC-001"
+        },
+        {
+          "acceptance_id": "F07-AC-002",
+          "test_id": "TEST-F07-002"
+        },
+        {
+          "acceptance_id": "F07-AC-003",
+          "test_id": "TEST-F07-003"
+        },
+        {
+          "acceptance_id": "F07-AC-004",
+          "test_id": "TEST-F07-004"
+        },
+        {
+          "acceptance_id": "F07-AC-005",
+          "test_id": "TEST-F07-AC-005"
+        },
+        {
+          "acceptance_id": "F07-AC-022",
+          "test_id": "TEST-F07-022"
+        }
+      ],
+      "allowed_write_paths": [
+        "src/platform/identity/",
+        "tests/unit/",
+        "tests/contract/",
+        "tests/behavior/",
+        "tests/regression/"
+      ],
+      "required_commands": [
+        "npm run gate",
+        "npm run check:types",
+        "npm run check:lint",
+        "npm run test:unit",
+        "npm run test:contract",
+        "npm run test:behavior",
+        "npm run test:regression"
+      ],
+      "required_skills": [
+        "implementer",
+        "test-builder",
+        "reviewer"
+      ],
+      "parallel_safe": false,
+      "product_decision_allowed": false,
+      "blocked_by": [],
+      "completion_evidence": []
+    },
+    {
+      "task_id": "T006",
+      "backlog_item_ids": [
+        "BL-P1-032"
+      ],
+      "title": "Implement evidence envelope, intake validation and idempotent ingestion",
+      "status": "PLANNED",
+      "build_spec_id": "BS-P1-001",
+      "scope": [
+        "Implement event envelope/registry validation, property allowlist and payload bounds.",
+        "Implement batch partial acceptance and event_id idempotent dedupe.",
+        "Implement anonymous identity ensure at evidence ingestion without making evidence an authorization source."
+      ],
+      "non_scope": [
+        "Do not implement client offline queue retention/expiry.",
+        "Do not implement final product metrics.",
+        "Do not store raw Intent or raw Result in product_event."
+      ],
+      "acceptance_links": [
+        {
+          "acceptance_id": "F07-AC-006",
+          "test_id": "TEST-F07-006"
+        },
+        {
+          "acceptance_id": "F07-AC-007",
+          "test_id": "TEST-F07-AC-007"
+        },
+        {
+          "acceptance_id": "F07-AC-008",
+          "test_id": "TEST-F07-008"
+        },
+        {
+          "acceptance_id": "F07-AC-009",
+          "test_id": "TEST-F07-009"
+        },
+        {
+          "acceptance_id": "F07-AC-010",
+          "test_id": "TEST-F07-010"
+        },
+        {
+          "acceptance_id": "F07-AC-011",
+          "test_id": "TEST-F07-011"
+        },
+        {
+          "acceptance_id": "F07-AC-012",
+          "test_id": "TEST-F07-AC-012"
+        }
+      ],
+      "allowed_write_paths": [
+        "src/platform/evidence/",
+        "src/edge/",
+        "supabase/migrations/",
+        "tests/contract/",
+        "tests/api/",
+        "tests/regression/"
+      ],
+      "required_commands": [
+        "npm run gate",
+        "npm run check:types",
+        "npm run check:lint",
+        "npm run test:contract",
+        "npm run test:api",
+        "npm run test:regression",
+        "npm run security:audit"
+      ],
+      "required_skills": [
+        "implementer",
+        "test-builder",
+        "db-migration",
+        "reviewer"
+      ],
+      "parallel_safe": false,
+      "product_decision_allowed": false,
+      "blocked_by": [
+        "T005"
+      ],
+      "completion_evidence": []
+    },
+    {
+      "task_id": "T007",
+      "backlog_item_ids": [
+        "BL-P1-032"
+      ],
+      "title": "Implement evidence batching, retry and non-blocking product isolation",
+      "status": "PLANNED",
+      "build_spec_id": "BS-P1-001",
+      "scope": [
+        "Batch normal Runtime evidence instead of sending one request per action.",
+        "Enforce maximum 50 events per batch.",
+        "Ensure transient ingest failure does not block the product workflow and follows bounded retry behavior."
+      ],
+      "non_scope": [
+        "Do not implement 24-hour offline queue retention or overflow priority; those remain in BL-P1-033.",
+        "Do not implement final cross-function metrics."
+      ],
+      "acceptance_links": [
+        {
+          "acceptance_id": "F07-AC-013",
+          "test_id": "TEST-F07-013"
+        },
+        {
+          "acceptance_id": "F07-AC-014",
+          "test_id": "TEST-F07-014"
+        },
+        {
+          "acceptance_id": "F07-AC-015",
+          "test_id": "TEST-F07-AC-015"
+        }
+      ],
+      "allowed_write_paths": [
+        "src/platform/evidence/",
+        "tests/unit/",
+        "tests/behavior/",
+        "tests/api/",
+        "tests/regression/"
+      ],
+      "required_commands": [
+        "npm run gate",
+        "npm run check:types",
+        "npm run check:lint",
+        "npm run test:unit",
+        "npm run test:behavior",
+        "npm run test:api",
+        "npm run test:regression"
+      ],
+      "required_skills": [
+        "implementer",
+        "test-builder",
+        "reviewer"
+      ],
+      "parallel_safe": false,
+      "product_decision_allowed": false,
+      "blocked_by": [
+        "T006"
+      ],
+      "completion_evidence": []
+    }
+  ]
+}
