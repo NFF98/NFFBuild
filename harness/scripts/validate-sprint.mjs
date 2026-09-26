@@ -96,12 +96,14 @@ for(const sid of sprintDirs){
       if(protectedPrefixes.some(x=>p.startsWith(x)) || p==="AGENTS.md") errors.push(sid+"/"+t.task_id+" may not write governance path: "+p);
     }
     if(!Array.isArray(t.required_commands)||!t.required_commands.length) errors.push(sid+"/"+t.task_id+" missing required_commands");
+    if(Array.isArray(t.required_commands) && !t.required_commands.includes("npm run gate")) errors.push(sid+"/"+t.task_id+" must require npm run gate");
     for(const cmd of t.required_commands||[]){
       const mm=/^npm run ([A-Za-z0-9:_-]+)$/.exec(cmd);
       if(!mm) errors.push(sid+"/"+t.task_id+" required_commands must be exact npm run scripts: "+cmd);
       else if(!pkg.scripts?.[mm[1]]) errors.push(sid+"/"+t.task_id+" references missing npm script: "+mm[1]);
     }
     if(!Array.isArray(t.required_skills)||!t.required_skills.length) errors.push(sid+"/"+t.task_id+" missing required_skills");
+    if(Array.isArray(t.required_skills) && !t.required_skills.includes("reviewer")) errors.push(sid+"/"+t.task_id+" must require reviewer");
     for(const skill of t.required_skills||[]){
       if(!registeredSkills.has(skill)) errors.push(sid+"/"+t.task_id+" unknown Skill "+skill);
       if(planningSkills.has(skill)) errors.push(sid+"/"+t.task_id+" execution Task may not require Planning Agent Skill "+skill);
