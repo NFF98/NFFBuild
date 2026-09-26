@@ -1,0 +1,23 @@
+name: TEMP Phase 1 Projection Dry Run
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  projection-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Build Machine candidate
+        uses: actions/checkout@v4
+      - name: Checkout exact Freeze Audit PASS Design commit
+        run: |
+          git init design
+          git -C design remote add origin https://github.com/NFF98/appf2-design.git
+          git -C design fetch --depth=1 origin 259f1e1b2277cf062611108c48112573ddc72cf0
+          git -C design checkout --detach FETCH_HEAD
+      - name: Run 47-artifact no-write Projection
+        run: node harness/tmp/run-phase1-projection-dry-run.mjs
