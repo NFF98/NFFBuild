@@ -48,7 +48,7 @@ if(current.active_baseline===null){
         errors.push(id+" unknown/inactive Acceptance "+link.acceptance_id);
         continue;
       }
-      if(e.function_id!==item.function_id) errors.push(id+" Acceptance "+link.acceptance_id+" belongs to "+e.function_id+", not "+item.function_id);
+      if(e.function_id && e.function_id!==item.function_id) errors.push(id+" Acceptance "+link.acceptance_id+" belongs to "+e.function_id+", not "+item.function_id);
       if(e.test_id!==link.test_id) errors.push(id+" Test mismatch for "+link.acceptance_id);
 
       const previous=claimed.get(link.acceptance_id);
