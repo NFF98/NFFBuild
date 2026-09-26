@@ -2,5 +2,1983 @@
   "schema_version": 1,
   "build_spec_id": "BS-P1-001",
   "status": "OPEN",
-  "items": []
+  "generation": {
+    "method": "IMPLEMENTATION_CAPABILITY_CLUSTER",
+    "backlog_item_count": 43,
+    "active_acceptance_coverage": 284,
+    "product_decision_allowed": false
+  },
+  "items": [
+    {
+      "backlog_item_id": "BL-P1-001",
+      "title": "Canonical registry generation & version integrity",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F04",
+      "contract_scope": "BS-P1-001/F04",
+      "implementation_scope": "Canonical registry generation & version integrity",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F04-AC-001",
+          "test_id": "TEST-F04-AC-001"
+        },
+        {
+          "acceptance_id": "F04-AC-002",
+          "test_id": "TEST-F04-002"
+        },
+        {
+          "acceptance_id": "F04-AC-003",
+          "test_id": "TEST-F04-003"
+        },
+        {
+          "acceptance_id": "F04-AC-006",
+          "test_id": "TEST-F04-AC-006"
+        },
+        {
+          "acceptance_id": "F04-AC-007",
+          "test_id": "TEST-F04-007"
+        }
+      ],
+      "dependencies": [],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-002",
+      "title": "Capability admission, resolution & runtime trust",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F04",
+      "contract_scope": "BS-P1-001/F04",
+      "implementation_scope": "Capability admission, resolution & runtime trust",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F04-AC-004",
+          "test_id": "TEST-F04-004"
+        },
+        {
+          "acceptance_id": "F04-AC-005",
+          "test_id": "TEST-F04-005"
+        },
+        {
+          "acceptance_id": "F04-AC-008",
+          "test_id": "TEST-F04-008"
+        },
+        {
+          "acceptance_id": "F04-AC-009",
+          "test_id": "TEST-F04-009"
+        },
+        {
+          "acceptance_id": "F04-AC-010",
+          "test_id": "TEST-F04-AC-010"
+        },
+        {
+          "acceptance_id": "F04-AC-011",
+          "test_id": "TEST-F04-AC-011"
+        },
+        {
+          "acceptance_id": "F04-AC-012",
+          "test_id": "TEST-F04-012"
+        },
+        {
+          "acceptance_id": "F04-AC-013",
+          "test_id": "TEST-F04-AC-013"
+        },
+        {
+          "acceptance_id": "F04-AC-014",
+          "test_id": "TEST-F04-014"
+        },
+        {
+          "acceptance_id": "F04-AC-015",
+          "test_id": "TEST-F04-AC-015"
+        },
+        {
+          "acceptance_id": "F04-AC-016",
+          "test_id": "TEST-F04-AC-016"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-001"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-003",
+      "title": "Registry evidence & traceability",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F04",
+      "contract_scope": "BS-P1-001/F04",
+      "implementation_scope": "Registry evidence & traceability",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F04-AC-017",
+          "test_id": "TEST-F04-AC-017"
+        },
+        {
+          "acceptance_id": "F04-AC-018",
+          "test_id": "TEST-F04-AC-018"
+        },
+        {
+          "acceptance_id": "F04-AC-019",
+          "test_id": "TEST-F04-AC-019"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-001",
+        "BL-P1-002"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-004",
+      "title": "Canonical Blueprint identity & hash contract",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F02",
+      "contract_scope": "BS-P1-001/F02",
+      "implementation_scope": "Canonical Blueprint identity & hash contract",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F02-AC-001",
+          "test_id": "TEST-F02-001"
+        },
+        {
+          "acceptance_id": "F02-AC-002",
+          "test_id": "TEST-F02-002"
+        },
+        {
+          "acceptance_id": "F02-AC-003",
+          "test_id": "TEST-F02-003"
+        },
+        {
+          "acceptance_id": "F02-AC-018",
+          "test_id": "TEST-F02-AC-018"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-001"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-005",
+      "title": "Validation pipeline, trust admission & hard ceilings",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F02",
+      "contract_scope": "BS-P1-001/F02",
+      "implementation_scope": "Validation pipeline, trust admission & hard ceilings",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F02-AC-004",
+          "test_id": "TEST-F02-004"
+        },
+        {
+          "acceptance_id": "F02-AC-005",
+          "test_id": "TEST-F02-005"
+        },
+        {
+          "acceptance_id": "F02-AC-006",
+          "test_id": "TEST-F02-006"
+        },
+        {
+          "acceptance_id": "F02-AC-007",
+          "test_id": "TEST-F02-007"
+        },
+        {
+          "acceptance_id": "F02-AC-008",
+          "test_id": "TEST-F02-AC-008"
+        },
+        {
+          "acceptance_id": "F02-AC-009",
+          "test_id": "TEST-F02-009"
+        },
+        {
+          "acceptance_id": "F02-AC-010",
+          "test_id": "TEST-F02-010"
+        },
+        {
+          "acceptance_id": "F02-AC-011",
+          "test_id": "TEST-F02-011"
+        },
+        {
+          "acceptance_id": "F02-AC-012",
+          "test_id": "TEST-F02-012"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-001",
+        "BL-P1-002",
+        "BL-P1-004"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-006",
+      "title": "Validation failure, degradation & explicit result contract",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F02",
+      "contract_scope": "BS-P1-001/F02",
+      "implementation_scope": "Validation failure, degradation & explicit result contract",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F02-AC-013",
+          "test_id": "TEST-F02-AC-013"
+        },
+        {
+          "acceptance_id": "F02-AC-014",
+          "test_id": "TEST-F02-AC-014"
+        },
+        {
+          "acceptance_id": "F02-AC-015",
+          "test_id": "TEST-F02-015"
+        },
+        {
+          "acceptance_id": "F02-AC-016",
+          "test_id": "TEST-F02-AC-016"
+        },
+        {
+          "acceptance_id": "F02-AC-017",
+          "test_id": "TEST-F02-017"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-005"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-007",
+      "title": "Validation evidence & admission trace",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F02",
+      "contract_scope": "BS-P1-001/F02",
+      "implementation_scope": "Validation evidence & admission trace",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F02-AC-019",
+          "test_id": "TEST-F02-AC-019"
+        },
+        {
+          "acceptance_id": "F02-AC-020",
+          "test_id": "TEST-F02-AC-020"
+        },
+        {
+          "acceptance_id": "F02-AC-021",
+          "test_id": "TEST-F02-021"
+        },
+        {
+          "acceptance_id": "F02-AC-022",
+          "test_id": "TEST-F02-AC-022"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-005"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-008",
+      "title": "Intent envelope, clarification & visible assumptions",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F01",
+      "contract_scope": "BS-P1-001/F01",
+      "implementation_scope": "Intent envelope, clarification & visible assumptions",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F01-AC-001",
+          "test_id": "TEST-F01-001"
+        },
+        {
+          "acceptance_id": "F01-AC-002",
+          "test_id": "TEST-F01-CP-001"
+        },
+        {
+          "acceptance_id": "F01-AC-003",
+          "test_id": "TEST-F01-CP-003"
+        },
+        {
+          "acceptance_id": "F01-AC-004",
+          "test_id": "TEST-F01-004"
+        },
+        {
+          "acceptance_id": "F01-AC-005",
+          "test_id": "TEST-F01-005"
+        },
+        {
+          "acceptance_id": "F01-AC-006",
+          "test_id": "TEST-F01-006"
+        },
+        {
+          "acceptance_id": "F01-AC-017",
+          "test_id": "TEST-F01-SEC-007"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-002"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-009",
+      "title": "Compiler gating, capability coverage & validation loop",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F01",
+      "contract_scope": "BS-P1-001/F01",
+      "implementation_scope": "Compiler gating, capability coverage & validation loop",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F01-AC-007",
+          "test_id": "TEST-F01-007"
+        },
+        {
+          "acceptance_id": "F01-AC-008",
+          "test_id": "TEST-F01-008"
+        },
+        {
+          "acceptance_id": "F01-AC-009",
+          "test_id": "TEST-F01-AC-009"
+        },
+        {
+          "acceptance_id": "F01-AC-010",
+          "test_id": "TEST-F01-010"
+        },
+        {
+          "acceptance_id": "F01-AC-011",
+          "test_id": "TEST-F01-AC-011"
+        },
+        {
+          "acceptance_id": "F01-AC-012",
+          "test_id": "TEST-F01-012"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-002",
+        "BL-P1-005",
+        "BL-P1-008"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-010",
+      "title": "Compiler APIs, idempotency, timeout & version trace",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F01",
+      "contract_scope": "BS-P1-001/F01",
+      "implementation_scope": "Compiler APIs, idempotency, timeout & version trace",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F01-AC-013",
+          "test_id": "TEST-F01-API-001"
+        },
+        {
+          "acceptance_id": "F01-AC-014",
+          "test_id": "TEST-F01-AC-014"
+        },
+        {
+          "acceptance_id": "F01-AC-015",
+          "test_id": "TEST-F01-API-002"
+        },
+        {
+          "acceptance_id": "F01-AC-016",
+          "test_id": "TEST-F01-API-003"
+        },
+        {
+          "acceptance_id": "F01-AC-018",
+          "test_id": "TEST-F01-AC-018"
+        },
+        {
+          "acceptance_id": "F01-AC-019",
+          "test_id": "TEST-F01-019"
+        },
+        {
+          "acceptance_id": "F01-AC-020",
+          "test_id": "TEST-F01-AC-020"
+        },
+        {
+          "acceptance_id": "F01-AC-021",
+          "test_id": "TEST-F01-021"
+        },
+        {
+          "acceptance_id": "F01-AC-022",
+          "test_id": "TEST-F01-AC-022"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-008",
+        "BL-P1-009"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-011",
+      "title": "Compiler evidence & CREATE checkpoint progress",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F01",
+      "contract_scope": "BS-P1-001/F01",
+      "implementation_scope": "Compiler evidence & CREATE checkpoint progress",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F01-AC-023",
+          "test_id": "TEST-F01-AC-023"
+        },
+        {
+          "acceptance_id": "F01-AC-024",
+          "test_id": "TEST-F01-AC-024"
+        },
+        {
+          "acceptance_id": "F01-AC-025",
+          "test_id": "TEST-F01-PROG-001"
+        },
+        {
+          "acceptance_id": "F01-AC-026",
+          "test_id": "TEST-F01-PROG-002"
+        },
+        {
+          "acceptance_id": "F01-AC-027",
+          "test_id": "TEST-F01-PROG-003"
+        },
+        {
+          "acceptance_id": "F01-AC-028",
+          "test_id": "TEST-F01-PROG-004"
+        },
+        {
+          "acceptance_id": "F01-AC-029",
+          "test_id": "TEST-F01-PROG-005"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-009",
+        "BL-P1-010"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-012",
+      "title": "Runtime hydration, state, expression, RNG & time semantics",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F03",
+      "contract_scope": "BS-P1-001/F03",
+      "implementation_scope": "Runtime hydration, state, expression, RNG & time semantics",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F03-AC-001",
+          "test_id": "TEST-F03-001"
+        },
+        {
+          "acceptance_id": "F03-AC-002",
+          "test_id": "TEST-F03-AC-002"
+        },
+        {
+          "acceptance_id": "F03-AC-003",
+          "test_id": "TEST-F03-AC-003"
+        },
+        {
+          "acceptance_id": "F03-AC-004",
+          "test_id": "TEST-F03-004"
+        },
+        {
+          "acceptance_id": "F03-AC-008",
+          "test_id": "TEST-F03-AC-008"
+        },
+        {
+          "acceptance_id": "F03-AC-010",
+          "test_id": "TEST-F03-010"
+        },
+        {
+          "acceptance_id": "F03-AC-011",
+          "test_id": "TEST-F03-011"
+        },
+        {
+          "acceptance_id": "F03-AC-012",
+          "test_id": "TEST-F03-012"
+        },
+        {
+          "acceptance_id": "F03-AC-013",
+          "test_id": "TEST-F03-AC-013"
+        },
+        {
+          "acceptance_id": "F03-AC-021",
+          "test_id": "TEST-F03-021"
+        },
+        {
+          "acceptance_id": "F03-AC-023",
+          "test_id": "TEST-F03-AC-023"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-002",
+        "BL-P1-005"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-013",
+      "title": "Event queue & atomic action transaction semantics",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F03",
+      "contract_scope": "BS-P1-001/F03",
+      "implementation_scope": "Event queue & atomic action transaction semantics",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F03-AC-005",
+          "test_id": "TEST-F03-005"
+        },
+        {
+          "acceptance_id": "F03-AC-006",
+          "test_id": "TEST-F03-006"
+        },
+        {
+          "acceptance_id": "F03-AC-007",
+          "test_id": "TEST-F03-007"
+        },
+        {
+          "acceptance_id": "F03-AC-016",
+          "test_id": "TEST-F03-AC-016"
+        },
+        {
+          "acceptance_id": "F03-AC-017",
+          "test_id": "TEST-F03-017"
+        },
+        {
+          "acceptance_id": "F03-AC-026",
+          "test_id": "TEST-F03-AC-026"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-012"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-014",
+      "title": "Runtime trust, isolation, lifecycle & resource enforcement",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F03",
+      "contract_scope": "BS-P1-001/F03",
+      "implementation_scope": "Runtime trust, isolation, lifecycle & resource enforcement",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F03-AC-014",
+          "test_id": "TEST-F03-AC-014"
+        },
+        {
+          "acceptance_id": "F03-AC-015",
+          "test_id": "TEST-F03-015"
+        },
+        {
+          "acceptance_id": "F03-AC-018",
+          "test_id": "TEST-F03-018"
+        },
+        {
+          "acceptance_id": "F03-AC-019",
+          "test_id": "TEST-F03-019"
+        },
+        {
+          "acceptance_id": "F03-AC-020",
+          "test_id": "TEST-F03-AC-020"
+        },
+        {
+          "acceptance_id": "F03-AC-022",
+          "test_id": "TEST-F03-022"
+        },
+        {
+          "acceptance_id": "F03-AC-025",
+          "test_id": "TEST-F03-AC-025"
+        },
+        {
+          "acceptance_id": "F03-AC-027",
+          "test_id": "TEST-F03-AC-027"
+        },
+        {
+          "acceptance_id": "F03-AC-028",
+          "test_id": "TEST-F03-AC-028"
+        },
+        {
+          "acceptance_id": "F03-AC-029",
+          "test_id": "TEST-F03-AC-029"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-002",
+        "BL-P1-005",
+        "BL-P1-012",
+        "BL-P1-013"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-015",
+      "title": "Result evaluation & correction replay support",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F03",
+      "contract_scope": "BS-P1-001/F03",
+      "implementation_scope": "Result evaluation & correction replay support",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F03-AC-009",
+          "test_id": "TEST-F03-009"
+        },
+        {
+          "acceptance_id": "F03-AC-024",
+          "test_id": "TEST-F03-AC-024"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-012",
+        "BL-P1-013"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-016",
+      "title": "Runtime operation identity, truthful progress & hard timeout",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F03",
+      "contract_scope": "BS-P1-001/F03",
+      "implementation_scope": "Runtime operation identity, truthful progress & hard timeout",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F03-AC-030",
+          "test_id": "TEST-F03-030"
+        },
+        {
+          "acceptance_id": "F03-AC-031",
+          "test_id": "TEST-F03-031"
+        },
+        {
+          "acceptance_id": "F03-AC-032",
+          "test_id": "TEST-F03-032"
+        },
+        {
+          "acceptance_id": "F03-AC-033",
+          "test_id": "TEST-F03-033"
+        },
+        {
+          "acceptance_id": "F03-AC-034",
+          "test_id": "TEST-F03-034"
+        },
+        {
+          "acceptance_id": "F03-AC-035",
+          "test_id": "TEST-F03-035"
+        },
+        {
+          "acceptance_id": "F03-AC-036",
+          "test_id": "TEST-F03-036"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-013",
+        "BL-P1-014"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-017",
+      "title": "Discover/Create, Capsule, clarification & assumption UX",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F00",
+      "contract_scope": "BS-P1-001/F00",
+      "implementation_scope": "Discover/Create, Capsule, clarification & assumption UX",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F00-AC-001",
+          "test_id": "TEST-F00-001"
+        },
+        {
+          "acceptance_id": "F00-AC-002",
+          "test_id": "TEST-F00-AC-002"
+        },
+        {
+          "acceptance_id": "F00-AC-003",
+          "test_id": "TEST-F00-003"
+        },
+        {
+          "acceptance_id": "F00-AC-004",
+          "test_id": "TEST-F00-004"
+        },
+        {
+          "acceptance_id": "F00-AC-005",
+          "test_id": "TEST-F00-005"
+        },
+        {
+          "acceptance_id": "F00-AC-006",
+          "test_id": "TEST-F00-006"
+        },
+        {
+          "acceptance_id": "F00-AC-038",
+          "test_id": "TEST-F00-038"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-008",
+        "BL-P1-009",
+        "BL-P1-010"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-018",
+      "title": "APP surface navigation, compare & inspection continuity",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F00",
+      "contract_scope": "BS-P1-001/F00",
+      "implementation_scope": "APP surface navigation, compare & inspection continuity",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F00-AC-007",
+          "test_id": "TEST-F00-007"
+        },
+        {
+          "acceptance_id": "F00-AC-009",
+          "test_id": "TEST-F00-AC-009"
+        },
+        {
+          "acceptance_id": "F00-AC-010",
+          "test_id": "TEST-F00-010"
+        },
+        {
+          "acceptance_id": "F00-AC-011",
+          "test_id": "TEST-F00-011"
+        },
+        {
+          "acceptance_id": "F00-AC-012",
+          "test_id": "TEST-F00-AC-012"
+        },
+        {
+          "acceptance_id": "F00-AC-036",
+          "test_id": "TEST-F00-036"
+        },
+        {
+          "acceptance_id": "F00-AC-037",
+          "test_id": "TEST-F00-037"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-012",
+        "BL-P1-015",
+        "BL-P1-017"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-019",
+      "title": "Degraded/recovery presentation & safe exit",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F00",
+      "contract_scope": "BS-P1-001/F00",
+      "implementation_scope": "Degraded/recovery presentation & safe exit",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F00-AC-013",
+          "test_id": "TEST-F00-013"
+        },
+        {
+          "acceptance_id": "F00-AC-014",
+          "test_id": "TEST-F00-014"
+        },
+        {
+          "acceptance_id": "F00-AC-015",
+          "test_id": "TEST-F00-AC-015"
+        },
+        {
+          "acceptance_id": "F00-AC-016",
+          "test_id": "TEST-F00-AC-016"
+        },
+        {
+          "acceptance_id": "F00-AC-017",
+          "test_id": "TEST-F00-AC-017"
+        },
+        {
+          "acceptance_id": "F00-AC-032",
+          "test_id": "TEST-F00-032"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-014",
+        "BL-P1-016"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-020",
+      "title": "Shell persistence, idempotency & authority boundaries",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F00",
+      "contract_scope": "BS-P1-001/F00",
+      "implementation_scope": "Shell persistence, idempotency & authority boundaries",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F00-AC-018",
+          "test_id": "TEST-F00-AC-018"
+        },
+        {
+          "acceptance_id": "F00-AC-019",
+          "test_id": "TEST-F00-019"
+        },
+        {
+          "acceptance_id": "F00-AC-020",
+          "test_id": "TEST-F00-020"
+        },
+        {
+          "acceptance_id": "F00-AC-021",
+          "test_id": "TEST-F00-AC-021"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-012",
+        "BL-P1-017"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-021",
+      "title": "Accessibility, responsive behavior & shell telemetry semantics",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F00",
+      "contract_scope": "BS-P1-001/F00",
+      "implementation_scope": "Accessibility, responsive behavior & shell telemetry semantics",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F00-AC-022",
+          "test_id": "TEST-F00-A11Y-001"
+        },
+        {
+          "acceptance_id": "F00-AC-023",
+          "test_id": "TEST-F00-AC-023"
+        },
+        {
+          "acceptance_id": "F00-AC-024",
+          "test_id": "TEST-F00-RWD-001"
+        },
+        {
+          "acceptance_id": "F00-AC-025",
+          "test_id": "TEST-F00-AC-025"
+        },
+        {
+          "acceptance_id": "F00-AC-026",
+          "test_id": "TEST-F00-AC-026"
+        },
+        {
+          "acceptance_id": "F00-AC-027",
+          "test_id": "TEST-F00-AC-027"
+        },
+        {
+          "acceptance_id": "F00-AC-028",
+          "test_id": "TEST-F00-AC-028"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-017",
+        "BL-P1-018"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-022",
+      "title": "Runtime/Create processing presentation & checkpoint progress",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F00",
+      "contract_scope": "BS-P1-001/F00",
+      "implementation_scope": "Runtime/Create processing presentation & checkpoint progress",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F00-AC-029",
+          "test_id": "TEST-F00-029"
+        },
+        {
+          "acceptance_id": "F00-AC-030",
+          "test_id": "TEST-F00-030"
+        },
+        {
+          "acceptance_id": "F00-AC-031",
+          "test_id": "TEST-F00-031"
+        },
+        {
+          "acceptance_id": "F00-AC-033",
+          "test_id": "TEST-F00-PROG-001"
+        },
+        {
+          "acceptance_id": "F00-AC-034",
+          "test_id": "TEST-F00-PROG-002"
+        },
+        {
+          "acceptance_id": "F00-AC-035",
+          "test_id": "TEST-F00-PROG-003"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-011",
+        "BL-P1-016",
+        "BL-P1-017"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-023",
+      "title": "Durable Share creation, privacy & idempotency",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F05",
+      "contract_scope": "BS-P1-001/F05",
+      "implementation_scope": "Durable Share creation, privacy & idempotency",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F05-AC-001",
+          "test_id": "TEST-F05-001"
+        },
+        {
+          "acceptance_id": "F05-AC-002",
+          "test_id": "TEST-F05-002"
+        },
+        {
+          "acceptance_id": "F05-AC-003",
+          "test_id": "TEST-F05-003"
+        },
+        {
+          "acceptance_id": "F05-AC-004",
+          "test_id": "TEST-F05-AC-004"
+        },
+        {
+          "acceptance_id": "F05-AC-005",
+          "test_id": "TEST-F05-005"
+        },
+        {
+          "acceptance_id": "F05-AC-015",
+          "test_id": "TEST-F05-AC-015"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-005",
+        "BL-P1-012",
+        "BL-P1-018"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-024",
+      "title": "Public restore, trust gate, cache & fresh runtime",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F05",
+      "contract_scope": "BS-P1-001/F05",
+      "implementation_scope": "Public restore, trust gate, cache & fresh runtime",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F05-AC-006",
+          "test_id": "TEST-F05-AC-006"
+        },
+        {
+          "acceptance_id": "F05-AC-007",
+          "test_id": "TEST-F05-AC-007"
+        },
+        {
+          "acceptance_id": "F05-AC-008",
+          "test_id": "TEST-F05-008"
+        },
+        {
+          "acceptance_id": "F05-AC-009",
+          "test_id": "TEST-F05-009"
+        },
+        {
+          "acceptance_id": "F05-AC-010",
+          "test_id": "TEST-F05-010"
+        },
+        {
+          "acceptance_id": "F05-AC-011",
+          "test_id": "TEST-F05-011"
+        },
+        {
+          "acceptance_id": "F05-AC-012",
+          "test_id": "TEST-F05-012"
+        },
+        {
+          "acceptance_id": "F05-AC-013",
+          "test_id": "TEST-F05-AC-013"
+        },
+        {
+          "acceptance_id": "F05-AC-014",
+          "test_id": "TEST-F05-014"
+        },
+        {
+          "acceptance_id": "F05-AC-016",
+          "test_id": "TEST-F05-016"
+        },
+        {
+          "acceptance_id": "F05-AC-017",
+          "test_id": "TEST-F05-AC-017"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-005",
+        "BL-P1-012",
+        "BL-P1-014",
+        "BL-P1-023"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-025",
+      "title": "Shared App use-as-is & explicit Remix transition",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F05",
+      "contract_scope": "BS-P1-001/F05",
+      "implementation_scope": "Shared App use-as-is & explicit Remix transition",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F05-AC-018",
+          "test_id": "TEST-F05-018"
+        },
+        {
+          "acceptance_id": "F05-AC-022",
+          "test_id": "TEST-F05-022"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-024",
+        "BL-P1-027"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-026",
+      "title": "Share/restore evidence semantics",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F05",
+      "contract_scope": "BS-P1-001/F05",
+      "implementation_scope": "Share/restore evidence semantics",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F05-AC-019",
+          "test_id": "TEST-F05-AC-019"
+        },
+        {
+          "acceptance_id": "F05-AC-020",
+          "test_id": "TEST-F05-AC-020"
+        },
+        {
+          "acceptance_id": "F05-AC-021",
+          "test_id": "TEST-F05-AC-021"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-023",
+        "BL-P1-024",
+        "BL-P1-032"
+      ],
+      "priority": "P2",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-027",
+      "title": "Refine/Remix mode, source authority & inspection session boundary",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F06",
+      "contract_scope": "BS-P1-001/F06",
+      "implementation_scope": "Refine/Remix mode, source authority & inspection session boundary",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F06-AC-001",
+          "test_id": "TEST-F06-AC-001"
+        },
+        {
+          "acceptance_id": "F06-AC-002",
+          "test_id": "TEST-F06-002"
+        },
+        {
+          "acceptance_id": "F06-AC-003",
+          "test_id": "TEST-F06-003"
+        },
+        {
+          "acceptance_id": "F06-AC-004",
+          "test_id": "TEST-F06-004"
+        },
+        {
+          "acceptance_id": "F06-AC-015",
+          "test_id": "TEST-F06-015"
+        },
+        {
+          "acceptance_id": "F06-AC-016",
+          "test_id": "TEST-F06-016"
+        },
+        {
+          "acceptance_id": "F06-AC-017",
+          "test_id": "TEST-F06-AC-017"
+        },
+        {
+          "acceptance_id": "F06-AC-024",
+          "test_id": "TEST-F06-024"
+        },
+        {
+          "acceptance_id": "F06-AC-025",
+          "test_id": "TEST-F06-025"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-008",
+        "BL-P1-010",
+        "BL-P1-012",
+        "BL-P1-024"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-028",
+      "title": "Child compilation, validation, preservation & lineage",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F06",
+      "contract_scope": "BS-P1-001/F06",
+      "implementation_scope": "Child compilation, validation, preservation & lineage",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F06-AC-005",
+          "test_id": "TEST-F06-005"
+        },
+        {
+          "acceptance_id": "F06-AC-006",
+          "test_id": "TEST-F06-AC-006"
+        },
+        {
+          "acceptance_id": "F06-AC-007",
+          "test_id": "TEST-F06-007"
+        },
+        {
+          "acceptance_id": "F06-AC-008",
+          "test_id": "TEST-F06-008"
+        },
+        {
+          "acceptance_id": "F06-AC-009",
+          "test_id": "TEST-F06-009"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-005",
+        "BL-P1-009",
+        "BL-P1-027"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-029",
+      "title": "Preview decisions, retry, carryover & sensitive input handling",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F06",
+      "contract_scope": "BS-P1-001/F06",
+      "implementation_scope": "Preview decisions, retry, carryover & sensitive input handling",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F06-AC-010",
+          "test_id": "TEST-F06-010"
+        },
+        {
+          "acceptance_id": "F06-AC-011",
+          "test_id": "TEST-F06-AC-011"
+        },
+        {
+          "acceptance_id": "F06-AC-012",
+          "test_id": "TEST-F06-AC-012"
+        },
+        {
+          "acceptance_id": "F06-AC-013",
+          "test_id": "TEST-F06-AC-013"
+        },
+        {
+          "acceptance_id": "F06-AC-014",
+          "test_id": "TEST-F06-014"
+        },
+        {
+          "acceptance_id": "F06-AC-018",
+          "test_id": "TEST-F06-018"
+        },
+        {
+          "acceptance_id": "F06-AC-019",
+          "test_id": "TEST-F06-019"
+        },
+        {
+          "acceptance_id": "F06-AC-022",
+          "test_id": "TEST-F06-AC-022"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-018",
+        "BL-P1-027",
+        "BL-P1-028"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-030",
+      "title": "Refine/Remix evidence & acceptance distinction",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F06",
+      "contract_scope": "BS-P1-001/F06",
+      "implementation_scope": "Refine/Remix evidence & acceptance distinction",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F06-AC-020",
+          "test_id": "TEST-F06-AC-020"
+        },
+        {
+          "acceptance_id": "F06-AC-021",
+          "test_id": "TEST-F06-AC-021"
+        },
+        {
+          "acceptance_id": "F06-AC-023",
+          "test_id": "TEST-F06-AC-023"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-028",
+        "BL-P1-029",
+        "BL-P1-032"
+      ],
+      "priority": "P2",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-031",
+      "title": "Anonymous identity, privacy & non-fingerprinting",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F07",
+      "contract_scope": "BS-P1-001/F07",
+      "implementation_scope": "Anonymous identity, privacy & non-fingerprinting",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F07-AC-001",
+          "test_id": "TEST-F07-AC-001"
+        },
+        {
+          "acceptance_id": "F07-AC-002",
+          "test_id": "TEST-F07-002"
+        },
+        {
+          "acceptance_id": "F07-AC-003",
+          "test_id": "TEST-F07-003"
+        },
+        {
+          "acceptance_id": "F07-AC-004",
+          "test_id": "TEST-F07-004"
+        },
+        {
+          "acceptance_id": "F07-AC-005",
+          "test_id": "TEST-F07-AC-005"
+        },
+        {
+          "acceptance_id": "F07-AC-022",
+          "test_id": "TEST-F07-022"
+        }
+      ],
+      "dependencies": [],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-032",
+      "title": "Evidence event validation, batching, retry & ingestion isolation",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F07",
+      "contract_scope": "BS-P1-001/F07",
+      "implementation_scope": "Evidence event validation, batching, retry & ingestion isolation",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F07-AC-006",
+          "test_id": "TEST-F07-006"
+        },
+        {
+          "acceptance_id": "F07-AC-007",
+          "test_id": "TEST-F07-AC-007"
+        },
+        {
+          "acceptance_id": "F07-AC-008",
+          "test_id": "TEST-F07-008"
+        },
+        {
+          "acceptance_id": "F07-AC-009",
+          "test_id": "TEST-F07-009"
+        },
+        {
+          "acceptance_id": "F07-AC-010",
+          "test_id": "TEST-F07-010"
+        },
+        {
+          "acceptance_id": "F07-AC-011",
+          "test_id": "TEST-F07-011"
+        },
+        {
+          "acceptance_id": "F07-AC-012",
+          "test_id": "TEST-F07-AC-012"
+        },
+        {
+          "acceptance_id": "F07-AC-013",
+          "test_id": "TEST-F07-013"
+        },
+        {
+          "acceptance_id": "F07-AC-014",
+          "test_id": "TEST-F07-014"
+        },
+        {
+          "acceptance_id": "F07-AC-015",
+          "test_id": "TEST-F07-AC-015"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-031"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-033",
+      "title": "Client evidence buffering, expiry, retention & observability",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F07",
+      "contract_scope": "BS-P1-001/F07",
+      "implementation_scope": "Client evidence buffering, expiry, retention & observability",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F07-AC-016",
+          "test_id": "TEST-F07-016"
+        },
+        {
+          "acceptance_id": "F07-AC-017",
+          "test_id": "TEST-F07-017"
+        },
+        {
+          "acceptance_id": "F07-AC-018",
+          "test_id": "TEST-F07-AC-018"
+        },
+        {
+          "acceptance_id": "F07-AC-026",
+          "test_id": "TEST-F07-026"
+        },
+        {
+          "acceptance_id": "F07-AC-027",
+          "test_id": "TEST-F07-AC-027"
+        },
+        {
+          "acceptance_id": "F07-AC-028",
+          "test_id": "TEST-F07-AC-028"
+        },
+        {
+          "acceptance_id": "F07-AC-029",
+          "test_id": "TEST-F07-029"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-031",
+        "BL-P1-032"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-034",
+      "title": "Canonical outcome metrics & cross-function evidence links",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F07",
+      "contract_scope": "BS-P1-001/F07",
+      "implementation_scope": "Canonical outcome metrics & cross-function evidence links",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F07-AC-019",
+          "test_id": "TEST-F07-019"
+        },
+        {
+          "acceptance_id": "F07-AC-020",
+          "test_id": "TEST-F07-020"
+        },
+        {
+          "acceptance_id": "F07-AC-021",
+          "test_id": "TEST-F07-AC-021"
+        },
+        {
+          "acceptance_id": "F07-AC-023",
+          "test_id": "TEST-F07-AC-023"
+        },
+        {
+          "acceptance_id": "F07-AC-024",
+          "test_id": "TEST-F07-AC-024"
+        },
+        {
+          "acceptance_id": "F07-AC-025",
+          "test_id": "TEST-F07-AC-025"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-026",
+        "BL-P1-030",
+        "BL-P1-032",
+        "BL-P1-033",
+        "BL-P1-037",
+        "BL-P1-043"
+      ],
+      "priority": "P2",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-035",
+      "title": "Recovery classification, policy, retry budget & next actions",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F12",
+      "contract_scope": "BS-P1-001/F12",
+      "implementation_scope": "Recovery classification, policy, retry budget & next actions",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F12-AC-001",
+          "test_id": "TEST-F12-001"
+        },
+        {
+          "acceptance_id": "F12-AC-002",
+          "test_id": "TEST-F12-AC-002"
+        },
+        {
+          "acceptance_id": "F12-AC-003",
+          "test_id": "TEST-F12-003"
+        },
+        {
+          "acceptance_id": "F12-AC-004",
+          "test_id": "TEST-F12-004"
+        },
+        {
+          "acceptance_id": "F12-AC-010",
+          "test_id": "TEST-F12-010"
+        },
+        {
+          "acceptance_id": "F12-AC-011",
+          "test_id": "TEST-F12-011"
+        },
+        {
+          "acceptance_id": "F12-AC-012",
+          "test_id": "TEST-F12-AC-012"
+        },
+        {
+          "acceptance_id": "F12-AC-013",
+          "test_id": "TEST-F12-013"
+        },
+        {
+          "acceptance_id": "F12-AC-014",
+          "test_id": "TEST-F12-AC-014"
+        },
+        {
+          "acceptance_id": "F12-AC-018",
+          "test_id": "TEST-F12-018"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-005",
+        "BL-P1-014"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-036",
+      "title": "Context preservation, humanized presentation & accessibility",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F12",
+      "contract_scope": "BS-P1-001/F12",
+      "implementation_scope": "Context preservation, humanized presentation & accessibility",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F12-AC-005",
+          "test_id": "TEST-F12-005"
+        },
+        {
+          "acceptance_id": "F12-AC-006",
+          "test_id": "TEST-F12-006"
+        },
+        {
+          "acceptance_id": "F12-AC-007",
+          "test_id": "TEST-F12-007"
+        },
+        {
+          "acceptance_id": "F12-AC-008",
+          "test_id": "TEST-F12-008"
+        },
+        {
+          "acceptance_id": "F12-AC-009",
+          "test_id": "TEST-F12-AC-009"
+        },
+        {
+          "acceptance_id": "F12-AC-015",
+          "test_id": "TEST-F12-015"
+        },
+        {
+          "acceptance_id": "F12-AC-016",
+          "test_id": "TEST-F12-AC-016"
+        },
+        {
+          "acceptance_id": "F12-AC-017",
+          "test_id": "TEST-F12-017"
+        },
+        {
+          "acceptance_id": "F12-AC-019",
+          "test_id": "TEST-F12-AC-019"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-017",
+        "BL-P1-018",
+        "BL-P1-035"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-037",
+      "title": "Recovery episodes, evidence, backend boundary & trust preservation",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F12",
+      "contract_scope": "BS-P1-001/F12",
+      "implementation_scope": "Recovery episodes, evidence, backend boundary & trust preservation",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F12-AC-020",
+          "test_id": "TEST-F12-020"
+        },
+        {
+          "acceptance_id": "F12-AC-021",
+          "test_id": "TEST-F12-021"
+        },
+        {
+          "acceptance_id": "F12-AC-022",
+          "test_id": "TEST-F12-AC-022"
+        },
+        {
+          "acceptance_id": "F12-AC-023",
+          "test_id": "TEST-F12-023"
+        },
+        {
+          "acceptance_id": "F12-AC-024",
+          "test_id": "TEST-F12-AC-024"
+        },
+        {
+          "acceptance_id": "F12-AC-025",
+          "test_id": "TEST-F12-025"
+        },
+        {
+          "acceptance_id": "F12-AC-026",
+          "test_id": "TEST-F12-AC-026"
+        },
+        {
+          "acceptance_id": "F12-AC-027",
+          "test_id": "TEST-F12-027"
+        },
+        {
+          "acceptance_id": "F12-AC-028",
+          "test_id": "TEST-F12-AC-028"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-031",
+        "BL-P1-032",
+        "BL-P1-035"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-038",
+      "title": "Runtime timeout recovery & safe continuation",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F12",
+      "contract_scope": "BS-P1-001/F12",
+      "implementation_scope": "Runtime timeout recovery & safe continuation",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F12-AC-029",
+          "test_id": "TEST-F12-029"
+        },
+        {
+          "acceptance_id": "F12-AC-030",
+          "test_id": "TEST-F12-030"
+        },
+        {
+          "acceptance_id": "F12-AC-031",
+          "test_id": "TEST-F12-031"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-016",
+        "BL-P1-035",
+        "BL-P1-036"
+      ],
+      "priority": "P0",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-039",
+      "title": "Correction classification, semantic delta, child validation & lineage",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F16",
+      "contract_scope": "BS-P1-001/F16",
+      "implementation_scope": "Correction classification, semantic delta, child validation & lineage",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F16-AC-001",
+          "test_id": "TEST-F16-001"
+        },
+        {
+          "acceptance_id": "F16-AC-002",
+          "test_id": "TEST-F16-002"
+        },
+        {
+          "acceptance_id": "F16-AC-003",
+          "test_id": "TEST-F16-003"
+        },
+        {
+          "acceptance_id": "F16-AC-004",
+          "test_id": "TEST-F16-004"
+        },
+        {
+          "acceptance_id": "F16-AC-005",
+          "test_id": "TEST-F16-005"
+        },
+        {
+          "acceptance_id": "F16-AC-006",
+          "test_id": "TEST-F16-006"
+        },
+        {
+          "acceptance_id": "F16-AC-031",
+          "test_id": "TEST-F16-AC-031"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-005",
+        "BL-P1-009",
+        "BL-P1-015",
+        "BL-P1-027"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-040",
+      "title": "Replay input selection, snapshot privacy & compatibility",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F16",
+      "contract_scope": "BS-P1-001/F16",
+      "implementation_scope": "Replay input selection, snapshot privacy & compatibility",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F16-AC-007",
+          "test_id": "TEST-F16-007"
+        },
+        {
+          "acceptance_id": "F16-AC-008",
+          "test_id": "TEST-F16-AC-008"
+        },
+        {
+          "acceptance_id": "F16-AC-009",
+          "test_id": "TEST-F16-009"
+        },
+        {
+          "acceptance_id": "F16-AC-010",
+          "test_id": "TEST-F16-010"
+        },
+        {
+          "acceptance_id": "F16-AC-011",
+          "test_id": "TEST-F16-AC-011"
+        },
+        {
+          "acceptance_id": "F16-AC-012",
+          "test_id": "TEST-F16-012"
+        },
+        {
+          "acceptance_id": "F16-AC-013",
+          "test_id": "TEST-F16-AC-013"
+        },
+        {
+          "acceptance_id": "F16-AC-014",
+          "test_id": "TEST-F16-014"
+        },
+        {
+          "acceptance_id": "F16-AC-015",
+          "test_id": "TEST-F16-AC-015"
+        },
+        {
+          "acceptance_id": "F16-AC-026",
+          "test_id": "TEST-F16-AC-026"
+        },
+        {
+          "acceptance_id": "F16-AC-032",
+          "test_id": "TEST-F16-032"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-012",
+        "BL-P1-015",
+        "BL-P1-039"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-041",
+      "title": "Correction compare & user decision flow",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F16",
+      "contract_scope": "BS-P1-001/F16",
+      "implementation_scope": "Correction compare & user decision flow",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F16-AC-016",
+          "test_id": "TEST-F16-016"
+        },
+        {
+          "acceptance_id": "F16-AC-017",
+          "test_id": "TEST-F16-017"
+        },
+        {
+          "acceptance_id": "F16-AC-018",
+          "test_id": "TEST-F16-AC-018"
+        },
+        {
+          "acceptance_id": "F16-AC-019",
+          "test_id": "TEST-F16-AC-019"
+        },
+        {
+          "acceptance_id": "F16-AC-020",
+          "test_id": "TEST-F16-AC-020"
+        },
+        {
+          "acceptance_id": "F16-AC-021",
+          "test_id": "TEST-F16-021"
+        },
+        {
+          "acceptance_id": "F16-AC-024",
+          "test_id": "TEST-F16-024"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-018",
+        "BL-P1-039",
+        "BL-P1-040"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-042",
+      "title": "Correction idempotency, consistency & revert security",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F16",
+      "contract_scope": "BS-P1-001/F16",
+      "implementation_scope": "Correction idempotency, consistency & revert security",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F16-AC-022",
+          "test_id": "TEST-F16-022"
+        },
+        {
+          "acceptance_id": "F16-AC-023",
+          "test_id": "TEST-F16-AC-023"
+        },
+        {
+          "acceptance_id": "F16-AC-025",
+          "test_id": "TEST-F16-025"
+        },
+        {
+          "acceptance_id": "F16-AC-033",
+          "test_id": "TEST-F16-AC-033"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-039",
+        "BL-P1-040",
+        "BL-P1-041"
+      ],
+      "priority": "P1",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    },
+    {
+      "backlog_item_id": "BL-P1-043",
+      "title": "Correction evidence, outcome semantics & technical recovery",
+      "source": "BUILD_SPEC",
+      "build_spec_id": "BS-P1-001",
+      "function_id": "F16",
+      "contract_scope": "BS-P1-001/F16",
+      "implementation_scope": "Correction evidence, outcome semantics & technical recovery",
+      "acceptance_links": [
+        {
+          "acceptance_id": "F16-AC-027",
+          "test_id": "TEST-F16-027"
+        },
+        {
+          "acceptance_id": "F16-AC-028",
+          "test_id": "TEST-F16-AC-028"
+        },
+        {
+          "acceptance_id": "F16-AC-029",
+          "test_id": "TEST-F16-029"
+        },
+        {
+          "acceptance_id": "F16-AC-030",
+          "test_id": "TEST-F16-AC-030"
+        },
+        {
+          "acceptance_id": "F16-AC-034",
+          "test_id": "TEST-F16-AC-034"
+        }
+      ],
+      "dependencies": [
+        "BL-P1-032",
+        "BL-P1-035",
+        "BL-P1-039",
+        "BL-P1-041",
+        "BL-P1-042"
+      ],
+      "priority": "P2",
+      "status": "QUEUED",
+      "product_decision_allowed": false,
+      "completion_condition": "All mapped Acceptance/Test pairs must pass with required Task evidence before closure."
+    }
+  ]
 }
