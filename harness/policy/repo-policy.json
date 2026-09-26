@@ -12,7 +12,9 @@
   "implementation_roots": [
     "src/",
     "tests/",
-    "supabase/"
+    "supabase/",
+    "generated/",
+    "package-lock.json"
   ],
   "hold_exceptions": [
     "src/README.md",
