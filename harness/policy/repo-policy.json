@@ -1,5 +1,5 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "design_source_repo": "NFF98/appf2-design",
   "forbidden_top_level_directories": [
     "working",
@@ -46,7 +46,9 @@
     "vitest.config.ts",
     "playwright.config.ts",
     "delivery/CURRENT-SPRINT.json",
-    "delivery/sprints/"
+    "delivery/sprints/",
+    "package.json",
+    "tsconfig.build.json"
   ],
   "cursor_product_implementation_requires": [
     "active_locked_build_spec",
@@ -99,5 +101,9 @@
     "MATERIAL_VISUAL_CHANGE",
     "PUBLIC_DATA_SECURITY_RUNTIME_CONTRACT_CHANGE"
   ],
-  "max_same_strategy_failures_before_escalation": 2
+  "max_same_strategy_failures_before_escalation": 2,
+  "execution_side_effect_paths": [
+    "delivery/evidence/",
+    "delivery/findings/"
+  ]
 }
