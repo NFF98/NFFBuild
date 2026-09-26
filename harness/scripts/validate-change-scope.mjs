@@ -60,7 +60,9 @@ const immutableBacklog=q=>({
 });
 const immutableBuild=b=>omit(b,["implementation_enabled","reason"]);
 
-const targetSprint=cs.active_sprint || showBaseJson("delivery/CURRENT-SPRINT.json")?.active_sprint;
+const baseCurrentSprint=showBaseJson("delivery/CURRENT-SPRINT.json");
+const baseCurrentBuild=showBaseJson("build-spec/CURRENT.json");
+const targetSprint=cs.active_sprint || baseCurrentSprint?.active_sprint;
 const controlAllowed=new Set([
   "build-spec/CURRENT.json",
   "delivery/CURRENT-SPRINT.json",
@@ -86,12 +88,23 @@ if(changed.length && changed.every(p=>controlAllowed.has(p)) && baseSha && !/^0+
   if(safeControlTransition) console.log("- Safe execution control transition recognized; Task definitions remain immutable.");
 }
 
+const approvedRebaselineTransition=
+  baseCurrentBuild?.active_baseline &&
+  currentBuild.active_baseline &&
+  baseCurrentBuild.active_baseline!==currentBuild.active_baseline &&
+  baseCurrentSprint?.status==="BLOCKED" &&
+  cs.status==="BLOCKED" &&
+  changed.some(p=>p==="build-spec/activations/"+currentBuild.active_baseline+".json") &&
+  changed.every(p=>isGov(p) || isSideEffect(p));
+
+if(approvedRebaselineTransition) console.log("- Blocked Sprint rebaseline transition recognized; Activation/Baseline gates must independently approve it.");
+
 if(cs.active_sprint===null){
   for(const p of changed) if(isImpl(p)) errors.push("Product/task-scoped implementation changed while Sprint HOLD: "+p);
-}else if(safeControlTransition){
-  // Structural validators decide whether the state transition itself is legal.
+}else if(safeControlTransition || approvedRebaselineTransition){
+  // Structural/activation validators decide whether the governance transition itself is legal.
 }else if(cs.status==="BLOCKED"){
-  for(const p of changed) if(!isSideEffect(p)) errors.push("Sprint BLOCKED: only Finding/Evidence side effects are allowed: "+p);
+  for(const p of changed) if(!isSideEffect(p)) errors.push("Sprint BLOCKED: only Finding/Evidence side effects are allowed outside an approved rebaseline transition: "+p);
 }else if(["ACTIVE","REVIEW"].includes(cs.status)){
   const tasks=read("delivery/sprints/"+cs.active_sprint+"/tasks.json").tasks||[];
   const task=tasks.find(t=>t.task_id===cs.active_task);
