@@ -35,7 +35,7 @@ function makeBaseline(id,{sourceCommit,supersedes=null,deltas=[],decisionRef}){
   write(base+"/functions/demo.md","# Fake Build Contract\n\nDeterministic demo contract.\n");
   write(base+"/registries/acceptance-test-registry.json",{
     schema_version:1,total_acceptance:1,
-    entries:[{acceptance_id:"F99-AC-001",test_id:"TEST-F99-001",contract_status:"READY_FOR_IMPLEMENTATION"}]
+    entries:[{acceptance_id:"F99-AC-001",test_id:"TEST-F99-001",contract_status:"ACTIVE",required_for_build_freeze:true}]
   });
   const rels=["functions/demo.md","registries/acceptance-test-registry.json"].sort();
   const inventory=rels.map(rel=>({path:rel,sha256:fileSha(path.join(repo,base,rel))}));
