@@ -37,7 +37,18 @@ function makeBaseline(id,{sourceCommit,supersedes=null,deltas=[],decisionRef}){
     schema_version:1,total_acceptance:1,
     entries:[{acceptance_id:"F99-AC-001",test_id:"TEST-F99-001",contract_status:"ACTIVE",required_for_build_freeze:true}]
   });
-  const rels=["functions/demo.md","registries/acceptance-test-registry.json"].sort();
+  const demoSha=fileSha(path.join(repo,base,"functions/demo.md"));
+  const registrySha=fileSha(path.join(repo,base,"registries/acceptance-test-registry.json"));
+  write(base+"/projection-map.json",{
+    schema_version:1,baseline_id:id,phase:"PHASE_9",source_repo:"NFF98/appf2-design",source_commit:sourceCommit,
+    freeze_audit:{status:"PASS",version_lock:true,source_commit:sourceCommit},
+    projection_engine:{version:"MARKDOWN_EXACT_HEADING_V1",matching:"EXACT_ONLY",fuzzy_matching:false,llm_classification:false},
+    entries:[
+      {source_path:"working/functions/F99-demo.md",source_blob_sha:"1".repeat(40),mode:"FULL_COPY",target_path:"functions/demo.md",phase_scope:"PHASE_9_APPLICABLE_TRUTH_ONLY",freeze_audit_verification:"SELF_MARKER",output_sha256:demoSha},
+      {source_path:"working/detailed-design/registries/acceptance-test-registry.json",source_blob_sha:"2".repeat(40),mode:"FULL_COPY",target_path:"registries/acceptance-test-registry.json",phase_scope:"PHASE_9_APPLICABLE_TRUTH_ONLY",freeze_audit_verification:"SELF_MARKER",output_sha256:registrySha}
+    ]
+  });
+  const rels=["functions/demo.md","projection-map.json","registries/acceptance-test-registry.json"].sort();
   const inventory=rels.map(rel=>({path:rel,sha256:fileSha(path.join(repo,base,rel))}));
   const aggregate=sha(inventory.map(x=>x.path+":"+x.sha256+"\n").join(""));
   write(base+"/manifest.json",{
@@ -45,6 +56,7 @@ function makeBaseline(id,{sourceCommit,supersedes=null,deltas=[],decisionRef}){
     source_working_commit:sourceCommit,created_at:"2026-09-24T00:00:00Z",
     supersedes,approved_delta_ids:deltas,
     approval:{status:"USER_APPROVED",decision_ref:decisionRef},
+    projection_map:"projection-map.json",
     acceptance_registry:"registries/acceptance-test-registry.json",acceptance_count:1,
     file_inventory:inventory,content_sha256:aggregate
   });
@@ -98,6 +110,7 @@ function expectHarnessPass(name,scripts,{base,head="HEAD"}={}){
   for(const script of scripts) expectPass(name+" :: "+path.basename(script),"node",[script],{base,head});
 }
 const governanceHarness=[
+  "harness/scripts/validate-projection-map.mjs",
   "harness/scripts/validate-baseline.mjs",
   "harness/scripts/governance-gate.mjs",
   "harness/scripts/validate-activation.mjs",
@@ -116,6 +129,12 @@ baseWorkState("BS-P9-001");
 write("package-lock.json",{name:"appf2-build",version:"0.0.0",lockfileVersion:3,requires:true,packages:{"":{name:"appf2-build",version:"0.0.0"}}});
 const fixtureBase=commit("fixture: valid active sprint");
 expectHarnessPass("valid fixture baseline",governanceHarness,{});
+
+const badProjection=read("build-spec/baselines/BS-P9-001/projection-map.json");
+badProjection.freeze_audit.source_commit=sourceB;
+write("build-spec/baselines/BS-P9-001/projection-map.json",badProjection);
+expectFail("Projection map rejects source commit drift","harness/scripts/validate-projection-map.mjs",{});
+cleanTo(fixtureBase);
 
 write("src/outside/hack.ts","export const hack=true;\n");
 const outside=commit("attack: write outside task allowlist");
