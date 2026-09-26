@@ -56,9 +56,13 @@ if(current.active_baseline===null){
       else claimed.set(link.acceptance_id,id);
     }
 
-    if(item.status==="SPRINTED"){
+    if(["QUEUED","READY"].includes(item.status) && item.sprint_id) errors.push(id+" "+item.status+" must not have sprint_id before activation");
+    if(["SPRINTED","BLOCKED","DONE"].includes(item.status)){
       if(!item.sprint_id || !exists("delivery/sprints/"+item.sprint_id+"/manifest.json")) {
-        errors.push(id+" SPRINTED requires existing sprint_id");
+        errors.push(id+" "+item.status+" requires existing sprint_id");
+      }else{
+        const sm=read("delivery/sprints/"+item.sprint_id+"/manifest.json");
+        if(!Array.isArray(sm.backlog_item_ids) || !sm.backlog_item_ids.includes(id)) errors.push(id+" "+item.status+" sprint_id does not include item in Sprint manifest");
       }
     }
   }
